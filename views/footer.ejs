@@ -1,0 +1,534 @@
+<script>
+
+    document.getElementById('title').innerHTML='<%= title %>';
+    let today = new Date()
+    let month = (today.getMonth() + 1).toString()
+    if (month.length<2){
+        month = '0'+ month
+    }
+    let year = today.getFullYear()
+    const monthControl = document.querySelector('#dateSelect');
+    monthControl.setAttribute("max", year + "-" + month )
+
+
+</script>
+<div class="modal" id="exampleModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Give Us Your Feedback!</h5>
+          <button type="button" class="btn-close close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="container px-5 my-5">
+                <form id="dashboard-feedback" data-sb-form-api-token="API_TOKEN">
+                    <p><span class="text-danger">*</span> Indicates a required field</p>
+                    <div class="row g-3">
+                        <div class="col mb-3">
+                            <label class="form-label" for="firstName">First Name<span class="text-danger">*</span></label>
+                            <input class="form-control" id="firstName" name="firstName" type="text" required data-sb-validations="required" />
+                            <div class="invalid-feedback" data-sb-feedback="firstName:required">First Name is required.</div>
+                        </div>
+                        <div class=" col mb-3">
+                            <label class="form-label" for="lastName">Last Name<span class="text-danger">*</span></label>
+                            <input class="form-control" id="lastName" name="lastName" type="text" required data-sb-validations="required" />
+                            <div class="invalid-feedback" data-sb-feedback="lastName:required">Last Name is required.</div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="emailAddress">Email Address</label>
+                        <input class="form-control" id="emailAddress" name="emailAddress" type="email" data-sb-validations="email" />
+                        <div class="invalid-feedback" data-sb-feedback="emailAddress:email">Email Address is not valid.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="whichClubAreYouAMemberOf">What club are you a member of?</label>
+                        <input class="form-control" id="whichClubAreYouAMemberOf" name="whichClubAreYouAMemberOf" type="text" data-sb-validations="" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="didYouLikeTheDesignOfTheWebsite" class="form-label">Did you like the design of the website?</label>
+                        <div name="didYouLikeTheDesignOfTheWebsite">
+                            <div class="form-check form-check-inline">
+                              <label><input class="form-check-input" type="radio" name="didYouLikeTheDesignOfTheWebsite" value="Yes">Yes</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <label><input class="form-check-input" type="radio" name="didYouLikeTheDesignOfTheWebsite" value="No">No</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="didYouFindTheChartsUsefulRelevant" class="form-label">Did you find the charts useful/relevant?</label>
+                        <div name="didYouFindTheChartsUsefulRelevant">
+                            <div class="form-check form-check-inline">
+                              <label><input class="form-check-input" type="radio" name="didYouFindTheChartsUsefulRelevant" value="Yes">Yes</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <label><input class="form-check-input" type="radio" name="didYouFindTheChartsUsefulRelevant" value="No">No</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="whatTypeOfDeviceDidYouUseToViewTheSite">What type of device did you use to view the site?</label>
+                        <select class="form-select" id="whatTypeOfDeviceDidYouUseToViewTheSite" name="whatTypeOfDeviceDidYouUseToViewTheSite" aria-label="What type of device did you use to view the site?">
+                            <option value="Mobile Phone">Mobile Phone</option>
+                            <option value="Laptop/Desktop Computer">Laptop/Desktop Computer</option>
+                            <option value="Tablet">Tablet</option> 
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="didTheSiteRenderWellOnYourDeviceIfNoPleaseSpecifyDeviceModel">Did the site render well on your device? If no, please specify device model.</label>
+                        <textarea class="form-control" id="didTheSiteRenderWellOnYourDeviceIfNoPleaseSpecifyDeviceModel" name="didTheSiteRenderWellOnYourDeviceIfNoPleaseSpecifyDeviceModel" type="text" style="height: 10rem;" data-sb-validations=""></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="whatBrowserDidYouUseToAccessTheWebsite">What browser did you use to access the website?</label>
+                        <select class="form-select" id="whatBrowserDidYouUseToAccessTheWebsite" name="whatBrowserDidYouUseToAccessTheWebsite" aria-label="What browser did you use to access the website?">
+                            <option value="Mozilla Firefox">Mozilla Firefox</option>
+                            <option value="Google Chrome">Google Chrome</option>
+                            <option value="Safari">Safari</option>
+                            <option value="Microsoft Edge">Microsoft Edge</option>
+                            <option value="Internet Explorer">Internet Explorer</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="didTheSiteRenderWellInYourBrowserIfNoPleaseSpecifyBrowserNameAndVersion">Did the site render well in your browser? If no, please specify browser name and version.</label>
+                        <textarea class="form-control" id="didTheSiteRenderWellInYourBrowserIfNoPleaseSpecifyBrowserNameAndVersion" name="didTheSiteRenderWellInYourBrowserIfNoPleaseSpecifyBrowserNameAndVersion" type="text" style="height: 10rem;" data-sb-validations=""></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="onAScale151BeingTheWorstAnd5BeingTheBestHowWouldYouRateTheUsabilityOfTheSite" class="form-label d-block">On a scale 1-5, 1 being the worst and 5 being the best, how would you rate the usability of the site.</label>
+                        <div name="onAScale151BeingTheWorstAnd5BeingTheBestHowWouldYouRateTheUsabilityOfTheSite">
+                            <div class="form-check form-check-inline">
+                                <label><input class="form-check-input" value="1" type="radio" name="onAScale151BeingTheWorstAnd5BeingTheBestHowWouldYouRateTheUsabilityOfTheSite">1</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <label><input class="form-check-input" value="2" type="radio" name="onAScale151BeingTheWorstAnd5BeingTheBestHowWouldYouRateTheUsabilityOfTheSite">2</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <label><input class="form-check-input" value="3" type="radio" name="onAScale151BeingTheWorstAnd5BeingTheBestHowWouldYouRateTheUsabilityOfTheSite">3</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <label><input class="form-check-input" value="4" type="radio" name="onAScale151BeingTheWorstAnd5BeingTheBestHowWouldYouRateTheUsabilityOfTheSite">4</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <label><input class="form-check-input" value="5" type="radio" name="onAScale151BeingTheWorstAnd5BeingTheBestHowWouldYouRateTheUsabilityOfTheSite">5</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="whatDoYouLikeAboutTheSite">What do you like about the site?</label>
+                        <textarea class="form-control" id="whatDoYouLikeAboutTheSite" name="whatDoYouLikeAboutTheSite" type="text" style="height: 10rem;" data-sb-validations=""></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="whatWouldYouLikeToChangeAboutTheSite">What would you like to change about the site?</label>
+                        <textarea class="form-control" id="whatWouldYouLikeToChangeAboutTheSite" name="whatWouldYouLikeToChangeAboutTheSite" type="text" style="height: 10rem;" data-sb-validations=""></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="doYouHaveAnyOtherSuggestionToImproveTheDesign">Do you have any other suggestion to improve the design?</label>
+                        <textarea class="form-control" id="doYouHaveAnyOtherSuggestionToImproveTheDesign" name="doYouHaveAnyOtherSuggestionToImproveTheDesign" type="text" style="height: 10rem;" data-sb-validations=""></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="wereYouAbleToNavigateToOtherPagesEasily" class="form-label">Were you able to navigate to other pages easily?</label>
+                        <div name="wereYouAbleToNavigateToOtherPagesEasily">
+                            <div class="form-check form-check-inline">
+                              <label><input class="form-check-input" type="radio" name="wereYouAbleToNavigateToOtherPagesEasily" value="Yes">Yes</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <label><input class="form-check-input" type="radio" name="wereYouAbleToNavigateToOtherPagesEasily" value="No">No</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="doYouThinkTheresABetterWayToImproveNavigation">Do you think there&#x27;s a better way to improve navigation?</label>
+                        <textarea class="form-control" id="doYouThinkTheresABetterWayToImproveNavigation" name="doYouThinkTheresABetterWayToImproveNavigation" type="text" style="height: 10rem;" data-sb-validations=""></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="didYouFindTheInformationUsefulRelevant" class="form-label">Did you find the information useful/relevant?</label>
+                        <div name="didYouFindTheInformationUsefulRelevant">
+                            <div class="form-check form-check-inline">
+                              <label><input class="form-check-input" type="radio" name="didYouFindTheInformationUsefulRelevant" value="Yes">Yes</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <label><input class="form-check-input" type="radio" name="didYouFindTheInformationUsefulRelevant" value="No">No</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="onAScale151BeingTheWorstAnd5BeingTheBestHowWouldYouRateTheClarityOfTheContent" class="form-label d-block">On a scale 1-5, 1 being the worst and 5 being the best, how would you rate the clarity of the content?</label>
+                        <div name="onAScale151BeingTheWorstAnd5BeingTheBestHowWouldYouRateTheClarityOfTheContent">
+                            <div class="form-check form-check-inline">
+                                <label><input class="form-check-input" value="1" type="radio" name="onAScale151BeingTheWorstAnd5BeingTheBestHowWouldYouRateTheClarityOfTheContent">1</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <label><input class="form-check-input" value="2" type="radio" name="onAScale151BeingTheWorstAnd5BeingTheBestHowWouldYouRateTheClarityOfTheContent">2</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <label><input class="form-check-input" value="3" type="radio" name="onAScale151BeingTheWorstAnd5BeingTheBestHowWouldYouRateTheClarityOfTheContent">3</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <label><input class="form-check-input" value="4" type="radio" name="onAScale151BeingTheWorstAnd5BeingTheBestHowWouldYouRateTheClarityOfTheContent">4</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <label><input class="form-check-input" value="5" type="radio" name="onAScale151BeingTheWorstAnd5BeingTheBestHowWouldYouRateTheClarityOfTheContent">5</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="wasTheContentPresentedInTheRightFormat" class="form-label">Was the content presented in the right format?</label>
+                        <div name="wasTheContentPresentedInTheRightFormat">
+                            <div class="form-check form-check-inline">
+                              <label><input class="form-check-input" type="radio" name="wasTheContentPresentedInTheRightFormat" value="Yes">Yes</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <label><input class="form-check-input" type="radio" name="wasTheContentPresentedInTheRightFormat" value="No">No</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="doYouThinkThereIsABetterWayToPresentTheContent">Do you think there is a better way to present the content?</label>
+                        <textarea class="form-control" id="doYouThinkThereIsABetterWayToPresentTheContent" name="doYouThinkThereIsABetterWayToPresentTheContent" type="text" style="height: 10rem;" data-sb-validations=""></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="didItTakeLongToLoadTheWebsite" class="form-label">Did it take long to load the website?</label>
+                        <div name="didItTakeLongToLoadTheWebsite">
+                            <div class="form-check form-check-inline">
+                              <label><input class="form-check-input" type="radio" name="didItTakeLongToLoadTheWebsite" value="Yes">Yes</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <label><input class="form-check-input" type="radio" name="didItTakeLongToLoadTheWebsite" value="No">No</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="didYouRunIntoAnyErrorMessagesIfYesPleaseSpecifyTheErrorMessageAndTheActionThatLedToTheError">Did you run into any error messages? If yes, please specify the error message and the action that led to the error.</label>
+                        <textarea class="form-control" id="didYouRunIntoAnyErrorMessagesIfYesPleaseSpecifyTheErrorMessageAndTheActionThatLedToTheError" name="didYouRunIntoAnyErrorMessagesIfYesPleaseSpecifyTheErrorMessageAndTheActionThatLedToTheError" type="text" style="height: 10rem;" data-sb-validations=""></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="didYouRunIntoAnyBrokenLinksIfYesPleaseSpecifyWhichLinkS">Did you run into any broken links? If yes, please specify which link/s.</label>
+                        <textarea class="form-control" id="didYouRunIntoAnyBrokenLinksIfYesPleaseSpecifyWhichLinkS" name="didYouRunIntoAnyBrokenLinksIfYesPleaseSpecifyWhichLinkS" type="text" style="height: 10rem;" data-sb-validations=""></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <div class="mb-3">
+                            <label for="onAScaleOf15HowWouldYouRateThePerformanceOfOurWebsite" class="form-label d-block">On a scale of 1-5, how would you rate the performance of our website?</label>
+                            <div name="onAScaleOf15HowWouldYouRateThePerformanceOfOurWebsite">
+                                <div class="form-check form-check-inline">
+                                    <label><input class="form-check-input" value="1" type="radio" name="onAScaleOf15HowWouldYouRateThePerformanceOfOurWebsite">1</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <label><input class="form-check-input" value="2" type="radio" name="onAScaleOf15HowWouldYouRateThePerformanceOfOurWebsite">2</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <label><input class="form-check-input" value="3" type="radio" name="onAScaleOf15HowWouldYouRateThePerformanceOfOurWebsite">3</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <label><input class="form-check-input" value="4" type="radio" name="onAScaleOf15HowWouldYouRateThePerformanceOfOurWebsite">4</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <label><input class="form-check-input" value="5" type="radio" name="onAScaleOf15HowWouldYouRateThePerformanceOfOurWebsite">5</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="ifYouHaveAnyCommentsQuestionsOrConcernsPleaseListThemHere">If you have any comments, questions, or concerns please list them here.</label>
+                        <textarea class="form-control" id="ifYouHaveAnyCommentsQuestionsOrConcernsPleaseListThemHere" name="ifYouHaveAnyCommentsQuestionsOrConcernsPleaseListThemHere" type="text" style="height: 10rem;" data-sb-validations=""></textarea>
+                    </div>
+                    <div class="d-none" id="submitErrorMessage">
+                        <div class="text-center text-danger mb-3">Error sending message!</div>
+                    </div>
+                    <div class="d-grid">
+                        <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary close" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="sticky-bottom">
+    <div class="d-flex justify-content-end">
+        <button class="btn btn-warning rounded-circle p-3 mb-3 shadow-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-chat-left-dots-fill" viewBox="0 0 16 16">
+            <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm5 4a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+            </svg>
+        </button>
+        
+    </div>
+</div>
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwKa0ucpdnJpYn_qWnKb3PFV45AaYVGFLs-WjjbHGsn83WAZ3O_SzI30k3PBPf344LhoA/exec'
+    const form = document.forms['dashboard-feedback']
+    const modalBody = document.getElementsByClassName('modal-body')[0]
+
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      modalBody.innerHTML = `
+      <div class="container px-5 my-5">
+        <div class="d-flex justify-content-center">
+  <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+                            </div>
+                            `
+      fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+        .then(response => {
+            modalBody.innerHTML = `
+            <div class="container px-5 my-5">
+                <div class="d-flex justify-content-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="green" class="bi bi-check2-circle" viewBox="0 0 16 16">
+  <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
+  <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>
+</svg>
+</div>
+                <h4 class="text-center">Thanks For Your Feedback</h4>
+                </div>
+            `
+            console.log('Success!', response)
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+
+    const closeButtons = document.getElementsByClassName('close')
+    for (var i = 0; i < closeButtons.length; i++) {
+        closeButtons[i].addEventListener('click', e => {
+        modalBody.innerHTML = `
+        <div class="container px-5 my-5">
+                <form id="dashboard-feedback" data-sb-form-api-token="API_TOKEN">
+                    <p><span class="text-danger">*</span> Indicates a required field</p>
+                    <div class="row g-3">
+                        <div class="col mb-3">
+                            <label class="form-label" for="firstName">First Name<span class="text-danger">*</span></label>
+                            <input class="form-control" id="firstName" name="firstName" type="text" required data-sb-validations="required" />
+                            <div class="invalid-feedback" data-sb-feedback="firstName:required">First Name is required.</div>
+                        </div>
+                        <div class=" col mb-3">
+                            <label class="form-label" for="lastName">Last Name<span class="text-danger">*</span></label>
+                            <input class="form-control" id="lastName" name="lastName" type="text" required data-sb-validations="required" />
+                            <div class="invalid-feedback" data-sb-feedback="lastName:required">Last Name is required.</div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="emailAddress">Email Address</label>
+                        <input class="form-control" id="emailAddress" name="emailAddress" type="email" data-sb-validations="email" />
+                        <div class="invalid-feedback" data-sb-feedback="emailAddress:email">Email Address is not valid.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="whichClubAreYouAMemberOf">What club are you a member of?</label>
+                        <input class="form-control" id="whichClubAreYouAMemberOf" name="whichClubAreYouAMemberOf" type="text" data-sb-validations="" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label d-block">Did you like the design of the website?</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="didYouLikeTheDesignOfTheWebsite" type="radio" name="didYouLikeTheDesignOfTheWebsite" data-sb-validations="" />
+                            <label class="form-check-label" for="didYouLikeTheDesignOfTheWebsite1" value="didYouLikeTheDesignOfTheWebsite">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="didYouLikeTheDesignOfTheWebsite" type="radio" name="didYouLikeTheDesignOfTheWebsite" data-sb-validations="" />
+                            <label class="form-check-label" for="didYouLikeTheDesignOfTheWebsite2" value="didYouLikeTheDesignOfTheWebsite">No</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label d-block">Did you find the charts useful/relevant?</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="yes" type="radio" name="didYouFindTheChartsUsefulRelevant" data-sb-validations="" />
+                            <label class="form-check-label" for="yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="no" type="radio" name="didYouFindTheChartsUsefulRelevant" data-sb-validations="" />
+                            <label class="form-check-label" for="no">No</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="whatTypeOfDeviceDidYouUseToViewTheSite">What type of device did you use to view the site?</label>
+                        <select class="form-select" id="whatTypeOfDeviceDidYouUseToViewTheSite" name="whatTypeOfDeviceDidYouUseToViewTheSite" aria-label="What type of device did you use to view the site?">
+                            <option value="Mobile Phone">Mobile Phone</option>
+                            <option value="Laptop/Desktop Computer">Laptop/Desktop Computer</option>
+                            <option value="Tablet">Tablet</option> 
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="didTheSiteRenderWellOnYourDeviceIfNoPleaseSpecifyDeviceModel">Did the site render well on your device? If no, please specify device model.</label>
+                        <textarea class="form-control" id="didTheSiteRenderWellOnYourDeviceIfNoPleaseSpecifyDeviceModel" name="didTheSiteRenderWellOnYourDeviceIfNoPleaseSpecifyDeviceModel" type="text" style="height: 10rem;" data-sb-validations=""></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="whatBrowserDidYouUseToAccessTheWebsite">What browser did you use to access the website?</label>
+                        <select class="form-select" id="whatBrowserDidYouUseToAccessTheWebsite" name="whatBrowserDidYouUseToAccessTheWebsite" aria-label="What browser did you use to access the website?">
+                            <option value="Mozilla Firefox">Mozilla Firefox</option>
+                            <option value="Google Chrome">Google Chrome</option>
+                            <option value="Safari">Safari</option>
+                            <option value="Microsoft Edge">Microsoft Edge</option>
+                            <option value="Internet Explorer">Internet Explorer</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="didTheSiteRenderWellInYourBrowserIfNoPleaseSpecifyBrowserNameAndVersion">Did the site render well in your browser? If no, please specify browser name and version.</label>
+                        <textarea class="form-control" id="didTheSiteRenderWellInYourBrowserIfNoPleaseSpecifyBrowserNameAndVersion" name="didTheSiteRenderWellInYourBrowserIfNoPleaseSpecifyBrowserNameAndVersion" type="text" style="height: 10rem;" data-sb-validations=""></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label d-block">On a scale 1-5, 1 being the worst and 5 being the best, how would you rate the usability of the site.</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="1" type="radio" name="onAScale151BeingTheWorstAnd5BeingTheBestHowWouldYouRateTheUsabilityOfTheSite" data-sb-validations="" />
+                            <label class="form-check-label" for="1">1</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="2" type="radio" name="onAScale151BeingTheWorstAnd5BeingTheBestHowWouldYouRateTheUsabilityOfTheSite" data-sb-validations="" />
+                            <label class="form-check-label" for="2">2</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="3" type="radio" name="onAScale151BeingTheWorstAnd5BeingTheBestHowWouldYouRateTheUsabilityOfTheSite" data-sb-validations="" />
+                            <label class="form-check-label" for="3">3</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="4" type="radio" name="onAScale151BeingTheWorstAnd5BeingTheBestHowWouldYouRateTheUsabilityOfTheSite" data-sb-validations="" />
+                            <label class="form-check-label" for="4">4</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="5" type="radio" name="onAScale151BeingTheWorstAnd5BeingTheBestHowWouldYouRateTheUsabilityOfTheSite" data-sb-validations="" />
+                            <label class="form-check-label" for="5">5</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="whatDoYouLikeAboutTheSite">What do you like about the site?</label>
+                        <textarea class="form-control" id="whatDoYouLikeAboutTheSite" name="whatDoYouLikeAboutTheSite" type="text" style="height: 10rem;" data-sb-validations=""></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="whatWouldYouLikeToChangeAboutTheSite">What would you like to change about the site?</label>
+                        <textarea class="form-control" id="whatWouldYouLikeToChangeAboutTheSite" name="whatWouldYouLikeToChangeAboutTheSite" type="text" style="height: 10rem;" data-sb-validations=""></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="doYouHaveAnyOtherSuggestionToImproveTheDesign">Do you have any other suggestion to improve the design?</label>
+                        <textarea class="form-control" id="doYouHaveAnyOtherSuggestionToImproveTheDesign" name="doYouHaveAnyOtherSuggestionToImproveTheDesign" type="text" style="height: 10rem;" data-sb-validations=""></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label d-block">Were you able to navigate to other pages easily?</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="yes" type="radio" name="wereYouAbleToNavigateToOtherPagesEasily" data-sb-validations="" />
+                            <label class="form-check-label" for="yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="no" type="radio" name="wereYouAbleToNavigateToOtherPagesEasily" data-sb-validations="" />
+                            <label class="form-check-label" for="no">No</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="doYouThinkTheresABetterWayToImproveNavigation">Do you think there&#x27;s a better way to improve navigation?</label>
+                        <textarea class="form-control" id="doYouThinkTheresABetterWayToImproveNavigation" name="doYouThinkTheresABetterWayToImproveNavigation" type="text" style="height: 10rem;" data-sb-validations=""></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label d-block">Did you find the information useful/relevant?</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="yes" type="radio" name="didYouFindTheInformationUsefulRelevant" data-sb-validations="" />
+                            <label class="form-check-label" for="yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="no" type="radio" name="didYouFindTheInformationUsefulRelevant" data-sb-validations="" />
+                            <label class="form-check-label" for="no">No</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label d-block">On a scale 1-5, 1 being the worst and 5 being the best, how would you rate the clarity of the content?</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="1" type="radio" name="onAScale151BeingTheWorstAnd5BeingTheBestHowWouldYouRateTheClarityOfTheContent" data-sb-validations="" />
+                            <label class="form-check-label" for="1">1</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="2" type="radio" name="onAScale151BeingTheWorstAnd5BeingTheBestHowWouldYouRateTheClarityOfTheContent" data-sb-validations="" />
+                            <label class="form-check-label" for="2">2</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="3" type="radio" name="onAScale151BeingTheWorstAnd5BeingTheBestHowWouldYouRateTheClarityOfTheContent" data-sb-validations="" />
+                            <label class="form-check-label" for="3">3</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="4" type="radio" name="onAScale151BeingTheWorstAnd5BeingTheBestHowWouldYouRateTheClarityOfTheContent" data-sb-validations="" />
+                            <label class="form-check-label" for="4">4</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="5" type="radio" name="onAScale151BeingTheWorstAnd5BeingTheBestHowWouldYouRateTheClarityOfTheContent" data-sb-validations="" />
+                            <label class="form-check-label" for="5">5</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label d-block">Was the content presented in the right format?</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="yes" type="radio" name="wasTheContentPresentedInTheRightFormat" data-sb-validations="" />
+                            <label class="form-check-label" for="yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="no" type="radio" name="wasTheContentPresentedInTheRightFormat" data-sb-validations="" />
+                            <label class="form-check-label" for="no">No</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="doYouThinkThereIsABetterWayToPresentTheContent">Do you think there is a better way to present the content?</label>
+                        <textarea class="form-control" id="doYouThinkThereIsABetterWayToPresentTheContent" name="doYouThinkThereIsABetterWayToPresentTheContent" type="text" style="height: 10rem;" data-sb-validations=""></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label d-block">Did it take long to load the website?</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="yes" type="radio" name="didItTakeLongToLoadTheWebsite" data-sb-validations="" />
+                            <label class="form-check-label" for="yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="no" type="radio" name="didItTakeLongToLoadTheWebsite" data-sb-validations="" />
+                            <label class="form-check-label" for="no">No</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="didYouRunIntoAnyErrorMessagesIfYesPleaseSpecifyTheErrorMessageAndTheActionThatLedToTheError">Did you run into any error messages? If yes, please specify the error message and the action that led to the error.</label>
+                        <textarea class="form-control" id="didYouRunIntoAnyErrorMessagesIfYesPleaseSpecifyTheErrorMessageAndTheActionThatLedToTheError" name="didYouRunIntoAnyErrorMessagesIfYesPleaseSpecifyTheErrorMessageAndTheActionThatLedToTheError" type="text" style="height: 10rem;" data-sb-validations=""></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="didYouRunIntoAnyBrokenLinksIfYesPleaseSpecifyWhichLinkS">Did you run into any broken links? If yes, please specify which link/s.</label>
+                        <textarea class="form-control" id="didYouRunIntoAnyBrokenLinksIfYesPleaseSpecifyWhichLinkS" name="didYouRunIntoAnyBrokenLinksIfYesPleaseSpecifyWhichLinkS" type="text" style="height: 10rem;" data-sb-validations=""></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label d-block">On a scale of 1-5, how would you rate the performance of our website?</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="1" type="radio" name="onAScaleOf15HowWouldYouRateThePerformanceOfOurWebsite" data-sb-validations="" />
+                            <label class="form-check-label" for="1">1</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="2" type="radio" name="onAScaleOf15HowWouldYouRateThePerformanceOfOurWebsite" data-sb-validations="" />
+                            <label class="form-check-label" for="2">2</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="3" type="radio" name="onAScaleOf15HowWouldYouRateThePerformanceOfOurWebsite" data-sb-validations="" />
+                            <label class="form-check-label" for="3">3</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="4" type="radio" name="onAScaleOf15HowWouldYouRateThePerformanceOfOurWebsite" data-sb-validations="" />
+                            <label class="form-check-label" for="4">4</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="5" type="radio" name="onAScaleOf15HowWouldYouRateThePerformanceOfOurWebsite" data-sb-validations="" />
+                            <label class="form-check-label" for="5">5</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="ifYouHaveAnyCommentsQuestionsOrConcernsPleaseListThemHere">If you have any comments, questions, or concerns please list them here.</label>
+                        <textarea class="form-control" id="ifYouHaveAnyCommentsQuestionsOrConcernsPleaseListThemHere" name="ifYouHaveAnyCommentsQuestionsOrConcernsPleaseListThemHere" type="text" style="height: 10rem;" data-sb-validations=""></textarea>
+                    </div>
+                    <div class="d-none" id="submitErrorMessage">
+                        <div class="text-center text-danger mb-3">Error sending message!</div>
+                    </div>
+                    <div class="d-grid">
+                        <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        `
+    })
+    }
+    
+
+
+</script>
+</div>
+</body>
+</html>

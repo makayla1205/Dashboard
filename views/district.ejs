@@ -1,0 +1,818 @@
+<%- include('header') -%>
+<div class="row">
+    <div class="col-lg-3 mb-2">
+        <div class="card h-100 shadow">
+            <div class="card-body">
+                <h5 class="card-title text-center fw-bold">Total Clubs</h5>
+                <h5 id="totalclubs" class="text-center"><span id="total"></span>
+                    <div class="spinner-border spinner-border-sm" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </h5>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 mb-2">
+        <div class="card h-100 shadow">
+            <div class="card-body">
+                <h5 class="card-title text-center fw-bold">Clubs Status</h5>
+                <div class="row mt-3">
+                    <div class="col-3 border-end">
+                        <p class="text-center text-muted">Active</p>
+                        <h6 id="activeclubs" class="text-center fw-bold"><span class="text-center fw-bold" id="active"></span>
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </h6>
+                    </div>
+                    <div class="col-3 border-end">
+                        <p class="text-center text-muted">Low</p>
+                        <h6 id="lowclubs" class="text-center fw-bold"><span class="text-center fw-bold" id="low"></span>
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </h6>
+
+                    </div>
+                    <div class="col-3 border-end">
+                        <p class="text-center text-muted">Suspended</p>
+                        <h6 id="suspendedclubs" class="text-center fw-bold"><span class="text-center fw-bold" id="suspended"></span>
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </h6>
+
+                    </div>
+                    <div class="col-3">
+                        <p class="text-center text-muted">Ineligible</p>
+                        <h6 id="ineligibleclubs" class="text-center fw-bold"><span class="text-center fw-bold" id="ineligible"></span>
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </h6>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 mb-2">
+        <div class="card h-100 shadow">
+            <div class="card-body">
+                <h5 class="card-title text-center fw-bold">Officer List Submitted</h5>
+                <h5 id="officer" class="text-center"><span class="text-center fw-bold" id="ocofficer"></span>
+                    <div class="spinner-border spinner-border-sm" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </h5>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-4 mt-2">
+        <div class="card shadow mb-2">
+            <div class="card-body">
+                <h5 class="card-title text-center fw-bold">Paid Clubs</h5>
+                <div class="row mt-3">
+                    <div class="col-3 border-end">
+                        <p class="text-center text-muted">Base</p>
+                        <h6 id="paidbase" class="text-center fw-bold"><span class="text-center fw-bold" id="ocpaidbase"></span>
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </h6>
+                    </div>
+                    <div class="col-3 border-end">
+                        <p class="text-center text-muted">To Date</p>
+                        <h6 id="paiddate" class="text-center fw-bold"><span class="text-center fw-bold" id="ocpaiddate"></span>
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </h6>
+                    </div>
+                    <div class="col-3 border-end">
+                        <p class="text-center text-muted">Almost
+                            <i class="bi bi-info-circle-fill"
+                               data-bs-toggle="tooltip" data-bs-placement="top"
+                               data-bs-custom-class="custom-tooltip"
+                               data-bs-title="Contingent on April Renewals">
+                            </i>
+                        </p>
+                        <h6 id="paidalmost" class="text-center fw-bold"><span class="text-center fw-bold" id="ocpaidalmost"></span>
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </h6>
+                    </div>
+                    <div class="col-3">
+                        <p class="text-center text-muted">Goals</p>
+                        <h6 id="paidgoals" class="text-center fw-bold"><span class="text-center fw-bold" id="ocpaidgoals"></span>
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 mt-2">
+        <div class="card shadow mb-2">
+            <div class="card-body">
+                <h5 class="card-title text-center fw-bold">Payments</h5>
+                <div class="row mt-3">
+                    <div class="col-4 border-end">
+                        <p class="text-center text-muted">Base</p>
+                        <h6 id="paymentsbase" class="text-center fw-bold">
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </h6>
+                    </div>
+                    <div class="col-4 border-end">
+                        <p class="text-center text-muted">To Date</p>
+                        <h6 id="paymentsdate" class="text-center fw-bold">
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </h6>
+                    </div>
+                    <div class="col-4">
+                        <p class="text-center text-muted">Goals</p>
+                        <h6 id="paymentsgoals" class="text-center fw-bold">
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 mt-2">
+        <div class="card shadow mb-2">
+            <div class="card-body">
+                <h5 class="card-title text-center fw-bold">Distinguished Clubs</h5>
+                <div class="row mt-3">
+                    <div class="col-3 border-end">
+                        <p class="text-center text-muted">Base</p>
+                        <h6 id="distinguishedbase" class="text-center fw-bold"><span class="text-center fw-bold" id="ocdistinguishedbase"></span>
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </h6>
+                    </div>
+                    <div class="col-3 border-end">
+                        <p class="text-center text-muted">To Date</p>
+                        <h6 id="distinguisheddate" class="text-center fw-bold"><span class="text-center fw-bold" id="ocdistinguisheddate"></span>
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </h6>
+                    </div>
+                    <div class="col-3 border-end">
+                        <p class="text-center text-muted">Almost
+                            <i class="bi bi-info-circle-fill"
+                               data-bs-toggle="tooltip" data-bs-placement="top"
+                               data-bs-custom-class="custom-tooltip"
+                               data-bs-title="Contingent on April Renewals">
+                            </i>
+                        </p>
+                        <h6 id="distinguishedalmost" class="text-center fw-bold"><span class="text-center fw-bold" id="ocdistinguishedalmost"></span>
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </h6>
+                    </div>
+                    <div class="col-3">
+                        <p class="text-center text-muted">Goals</p>
+                        <h6 id="distinguishedgoals" class="text-center fw-bold"><span class="text-center fw-bold" id="ocdistinguishedgoals"></span>
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-3 mt-2">
+        <div class="row mb-2">
+            <div class="col-md-12">
+                <div class="card h-100 shadow mb-2">
+                    <div class="card-body">
+                        <h5 class="card-title text-center fw-bold"> Total New Members</h5>
+                        <h6 id="newmembers" class="text-center"><span class="text-center fw-bold" id="ocnewmembers"></span>
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </h6>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card h-100 shadow mb-2">
+                    <div class="card-body">
+                        <h5 class="card-title text-center fw-bold"> Active Clubs</h5>
+                        <h6 id="zeroplusmembers" class="text-center"><span class="text-center fw-bold" id="oczeroplusmembers"></span>
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 mt-2">
+        <div class="card h-100 shadow mb-2">
+            <div class="card-body">
+                <h5 class="card-title text-center fw-bold">Paid Dues</h5>
+                <table class="table">
+                    <tbody>
+                    <thead>
+                    <tr>
+                        <th class="text-center">Oct</th>
+                        <th class="text-center">Apr</th>
+                    </tr>
+                    </thead>
+                    <tr id="dues">
+                        <td class="text-center">
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr id="ocdues">
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 mt-2">
+        <div class="row mb-2">
+            <div class="col-md-12">
+            <div class="card h-100 shadow mb-2">
+                <div class="card-body">
+                    <h5 class="card-title text-center fw-bold">Training 1</h5>
+                    <h6 id="train1" class="text-center"><span class="text-center fw-bold" id="octrain1"></span>
+                        <div class="spinner-border spinner-border-sm" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </h6>
+
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+            <div class="card h-100 shadow mb-2">
+                <div class="card-body">
+                    <h5 class="card-title text-center fw-bold">Training 2</h5>
+                    <h6 id="train2" class="text-center"><span class="text-center fw-bold" id="octrain2"></span>
+                        <div class="spinner-border spinner-border-sm" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </h6>
+
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 mt-2">
+        <div class="row mb-2">
+        <div class="col-md-12">
+            <div class="card h-100 shadow mb-2">
+                <div class="card-body">
+                    <h5 class="card-title text-center fw-bold">Nov. Visits</h5>
+                    <h6 id="novvisits" class="text-center "><span class="text-center fw-bold" id="ocnovvisits"></span>
+                        <div class="spinner-border spinner-border-sm" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </h6>
+
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-md-12">
+            <div class="card h-100 shadow mb-2">
+                <div class="card-body">
+                    <h5 class="card-title text-center fw-bold">May Visits</h5>
+                    <h6 id="mayvisits" class="text-center"><span class="text-center fw-bold" id="ocmayvisits"></span>
+                        <div class="spinner-border spinner-border-sm" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </h6>
+
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-lg-8">
+        <div class="card shadow mb-2">
+            <div class="card-body">
+                <h5 class="card-title text-center fw-bold">Membership</h5>
+                <label for="membershipSelect"></label>
+                <select class="form-select w-50"  id="memberSelect" onchange="getMembershipChart()">
+                    <option value="all">All</option>
+
+                </select>
+                <br>
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-lg-4">
+            <div class="col-md-12">
+                <div class="card shadow mb-2">
+                    <div class="card-body">
+                        <h5 class="card-title text-center fw-bold">Pending Club Coaches</h5>
+                        <table class="table table-hover" id="coachtable">
+                            <thead>
+                            <tr>
+                                <th>Division</th>
+                                <th>Area</th>
+                                <th>Name</th>
+                            </tr>
+                            </thead>
+                            <tbody id="coachbody">
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+<script>
+    const API = '/api'
+    window.onload = (event) => {
+        generateData()
+        getDistrictStats()
+    };
+
+    async function generateData(){
+        let data;
+        let active, suspended, ineligible, officer, low;
+        let pendingCoaches = []
+        let divisionlist = []
+        let arealist = []
+        let clublist = []
+        let newMembers =  0
+        let zeroplusmem = 0
+        let octdues = 0
+        let aprdues = 0
+        let train1 = 0
+        let train2 = 0
+        let mayvisit = 0
+        let novvisit = 0;
+        let almostpaid = 0;
+        let almostdist = 0;
+
+        $.ajax({
+            url: '/getdistrict',
+            type: 'GET',
+            success: function(response){
+                console.log(response)
+                data = response.data
+                df = response.list
+            },
+            error: function (request, status, error) {
+                alert(error);
+            }
+        }).then(function (){
+            let divisionlist = df['Division List']
+            let arealist = df['Area List']
+            let clublist = df['Club List']
+            let currdivision = df['Division']
+            let currarea = df['Area']
+            let currclub = df['Club']
+            $('#divisionSelect').append(`<option ${(function (){
+                if(currdivision === "all"){
+                    return "selected "
+                } else {
+                    return ""
+                }
+            })()} value="all">All</option>`)
+            for(let i = 0; i < divisionlist.length; i++){
+                $('#divisionSelect').append(`<option ${(function (){
+                    if(divisionlist[i] === currdivision){
+                        return "selected "
+                    } else {
+                        return ""
+                    }
+                })()}value="${divisionlist[i]}">${divisionlist[i]}</option>`)
+                $('#memberSelect').append(`<option value="${divisionlist[i]}">Division ${divisionlist[i]}</option>`)
+            }
+            $('#areaSelect').append(`<option ${(function (){
+                if(currarea === "all"){
+                    return "selected "
+                } else {
+                    return ""
+                }
+            })()} value="all">All</option>`)
+            for(let i = 0; i < arealist.length; i++){
+                $('#areaSelect').append(`<option ${(function (){
+                    if(arealist[i] === currarea){
+                        return "selected "
+                    } else {
+                        return ""
+                    }
+                })()} value="${arealist[i]}">${arealist[i]}</option>`)
+            }
+            $('#clubSelect').append(`<option ${(function (){
+                if(currclub === "none"){
+                    return "selected "
+                } else {
+                    return ""
+                }
+            })()} value="none">No Club Selected</option>`)
+            for(let i = 0; i < clublist.length; i++){
+                $('#clubSelect').append(`<option ${(function (){
+                    if(clublist[i] === currclub){
+                        return "selected "
+                    } else {
+                        return ""
+                    }
+                })()} value="${clublist[i]}">${clublist[i]}</option>`)
+            }
+            const divs = document.getElementsByClassName("divhidden");
+            for (let i = 0; i < divs.length; i++) {
+                divs[i].value = currdivision;
+            }
+            const areas = document.getElementsByClassName("areahidden");
+            for (let i = 0; i < areas.length; i++) {
+                areas[i].value = currarea;
+            }
+            const clubs = document.getElementsByClassName("clubhidden");
+            for (let i = 0; i < clubs.length; i++) {
+                clubs[i].value = currclub;
+            }
+        })
+            .then(function (){
+                active = data.filter(function(item){
+                    if (item['Club Status'] === 'Active') {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                });
+                low = data.filter(function(item){
+                    if (item['Club Status'] === 'Low') {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                });
+                suspended = data.filter(function(item){
+                    if (item['Club Status'] === 'Suspended') {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                });
+                ineligible = data.filter(function(item){
+                    if (item['Club Status'] === 'Ineligible') {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                });
+                officer = data.filter(function(item){
+                    if (item['Officer'].length > 0) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                });
+                for(const item in data){
+                    var obj = data[item]
+                    newMembers += parseInt(obj['New Members'])
+                    newMembers += parseInt(obj['Add. New Members'])
+                }
+
+                for(const item in data){
+                    var obj = data[item]
+                    if(parseInt(obj['Active Members']) > 0){
+                        zeroplusmem++
+                    }
+                }
+
+                for(const item in data){
+                    var obj = data[item]
+                    if(parseInt(obj['October Renewals']) === 1){
+                        octdues++
+                    }
+                }
+
+                for(const item in data){
+                    var obj = data[item]
+                    if(parseInt(obj['April Renewals']) === 1){
+                        aprdues++
+                    }
+                }
+
+                for(const item in data){
+                    var obj = data[item]
+                    if(parseInt(obj['Off. Trained Round 1']) >= 4){
+                        train1++
+                    }
+                }
+
+                for(const item in data){
+                    var obj = data[item]
+                    if(parseInt(obj['Off. Trained Round 2']) >= 4){
+                        train2++
+                    }
+                }
+
+                for(const item in data){
+                    var obj = data[item]
+                    if(parseInt(obj['May Visit award']) === 1){
+                        mayvisit++
+                    }
+                }
+
+                for(const item in data){
+                    var obj = data[item]
+                    if(parseInt(obj['Nov Visit award']) === 1){
+                        novvisit++
+                    }
+                }
+
+                for(const item in data){
+                    var clubobj = data[item]
+                    for(const coach in clubobj['Club Coach']){
+                        const x = clubobj['Club Coach'][coach];
+                        if(x['Status'] === 'PENDING'){
+                            pendingCoaches.push(x)
+                        }
+                    }
+                }
+                for (let i = 0; i < data.length; i++) {
+                    if ((parseInt(data[i]['Active Members']) > parseInt(data[i]['Mem. Base'])) || parseInt(data[i]['Active Members']) >= 20) {
+                        almostpaid++
+                    }
+                    if (data[i]['Goals Met'] >= 5) {
+                        almostdist++
+                    }
+                }
+            })
+            .then(function(){
+                $('#totalclubs').replaceWith(`<h5 id="totalclubs" class="text-center"><span id="octotal"></span><span id="tc">${data.length}</span></h5>`);
+                $('#activeclubs').replaceWith(`<h6 id="activeclubs" class="text-center fw-bold"><span id="ocactive"></span>${active.length}</h6>`);
+                $('#lowclubs').replaceWith(`<h6 id="lowlubs" class="text-center fw-bold"><span id="oclow"></span>${low.length}</h6>`);
+                $('#suspendedclubs').replaceWith(`<h6 id="suspendedclubs" class="text-center fw-bold"><span id="ocsuspended"></span>${suspended.length}</h6>`)
+                $('#ineligibleclubs').replaceWith(`<h6 id="ineligibleclubs" class="text-center fw-bold"><span id="ocineligible"></span>${ineligible.length}</h6>`)
+                $('#officer').replaceWith(`<h5 id="officer" class="text-center"><span id="ocofficer"></span>${officer.length} Clubs</h5>`)
+                $('#newmembers').replaceWith('<h6 id="newmembers" class="text-center"><span class="text-center fw-bold" id="ocnewmembers"></span>' + newMembers + '</h6>');
+                $('#zeroplusmembers').replaceWith('<h6 class="text-center" id="zeroplusmembers"><span class="text-center fw-bold" id="oczeroplusmembers"></span>' + zeroplusmem + ' Clubs</h6>');
+                $('#dues').replaceWith(`<tr id="dues"> <td class="text-center">
+                                    ${octdues} Clubs
+                                </td>
+                                <td class="text-center">
+                                    ${aprdues} Clubs
+                                </td> <tr>`);
+                $('#train1').replaceWith(`<h6 class="text-center" id="train1"><span class="text-center fw-bold" id="octrain1"></span>${train1} Clubs (${Math.round(100 * (train1/(active.length + low.length)))}%)</h6>`);
+                $('#train2').replaceWith(`<h6 class="text-center" id="train2"><span class="text-center fw-bold" id="octrain2"></span>${train2} Clubs (${Math.round(100 * (train2/(active.length + low.length)))}%)</h6>`);
+                $('#novvisits').replaceWith(`<h6 class="text-center" id="novvisits"><span class="text-center fw-bold" id="ocnovvisits"></span>${novvisit} Clubs (${Math.round(100 * (novvisit/(active.length + low.length)))}%)</h6>`);
+                $('#mayvisits').replaceWith(`<h6 class="text-center" id="mayvisits"><span class="text-center fw-bold text-danger" id="ocmayvisits"></span>${mayvisit} Clubs (${Math.round(100 * (mayvisit/(active.length + low.length)))}%)</h6>`);
+                $('#paidalmost').replaceWith(`<h6 id="paidalmost" class="text-center fw-bold"><span class="text-center fw-bold text-danger" id="ocpaidalmost"></span>${almostpaid}</h6>`);
+                $('#distinguishedalmost').replaceWith(`<h6 id="distinguishedalmost" class="text-center fw-bold"><span class="text-center fw-bold text-danger" id="ocdistinguishedalmost"></span>${almostdist}</h6>`);
+                for(const coach in pendingCoaches){
+                    let obj = pendingCoaches[coach]
+                    $('#coachbody').append(`<tr class="coach${obj['Division']}">
+                                <td>
+                                    ${obj['Division']}
+                                </td>
+                                <td>
+                                    ${obj['Area']}
+                                </td>
+                                <td>
+                                    ${obj['Name']}
+                                </td>
+                            </tr>`)
+                }
+            })
+            .then(function (){
+                getMembershipChart()
+            })
+
+    }
+
+    async function getDistrictStats(){
+        let data;
+        $.ajax({
+            url: API + '/stats/<%=month%>/<%=year%>',
+            type: 'GET',
+            success: function(response){
+                data = response
+            },
+            error: function (request, status, error) {
+                alert(error);
+            }
+        })
+            .then(function (){
+                $('#paidbase').replaceWith(`<h6 id="paidbase" class="text-center fw-bold"><span class="text-center fw-bold" id="ocpaidbase"></span>${data['Paid Base']}</h6>`)
+                $('#paiddate').replaceWith(`<h6 id="paiddate" class="text-center fw-bold"><span class="text-center fw-bold" id="ocpaiddate"></span>${data['Paid To Date']}</h6>`)
+                $('#paidgoals').replaceWith(`<h6 id="paidgoals" class="text-center fw-bold"><span class="text-center fw-bold" id="ocpaidgoals"></span>${Math.round(data['Paid Base'])}</h6>`)
+                $('#paymentsbase').replaceWith(`<h6 id="paymentsbase" class="text-center fw-bold">${data['Payments Base']}</h6>`)
+                $('#paymentsdate').replaceWith(`<h6 id="paymentsdate" class="text-center fw-bold">${data['Payments To Date']}</h6>`)
+                $('#paymentsgoals').replaceWith(`<h6 id="paymentsgoals" class="text-center fw-bold">${Math.round(parseInt(data['Payments Base'].replace(/,/g, ''),10) * 1.0101)}</h6>`)
+                $('#distinguishedbase').replaceWith(`<h6 id="distinguishedbase" class="text-center fw-bold"><span class="text-center fw-bold" id="ocdistinguishedbase"></span>${data['Distinguished Base']}</h6>`)
+                $('#distinguisheddate').replaceWith(`<h6 id="distinguisheddate" class="text-center fw-bold"><span class="text-center fw-bold" id="ocdistinguisheddate"></span>${data['Distinguished To Date']}</h6>`)
+                $('#distinguishedgoals').replaceWith(`<h6 id="distinguishedgoals" class="text-center fw-bold"><span class="text-center fw-bold" id="ocdistinguishedgoals"></span>${Math.round(data['Distinguished Base'] * .4)}</h6>`)
+            })
+    }
+
+    async function getMembershipChart(){
+        const division = document.getElementById('memberSelect').value;
+        $.ajax({
+            url: '/fetch/membershipchart',
+            type: 'GET',
+            data: {
+                division: division,
+            },
+            success: function(response){
+                updateChart(division, response)
+            },
+            error: function (request, status, error) {
+                alert(error);
+            }
+        })
+        updatePage()
+    }
+
+    const data = {
+        labels: ["0", "1-7", "8-12", "13-19", "20+"],
+        datasets: []
+    };
+
+    const config = {
+        type: 'bar',
+        data: data,
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    stacked: true,
+                },
+                y: {
+                    stacked: true,
+                    beginAtZero: true,
+                    grace: "5%",
+                    ticks:{
+                        stepSize: 5,
+                    }
+                },
+            },
+            plugins: {
+                datalabels:{
+                    anchor: 'end',
+                    align: 'top',
+                    formatter: (value, context) => {
+                        const datasetArray = []
+                        context.chart.data.datasets.forEach((dataset) => {
+                            if(dataset.data[context.dataIndex] !== undefined){
+                                datasetArray.push(dataset.data[context.dataIndex]);
+                            }
+                        });
+
+                        function totalSum(total, datapoint){
+                            return total + datapoint
+                        }
+                        let totalClubs = document.getElementById('tc').innerText;
+                        let sum = datasetArray.reduce(totalSum, 0)
+                        if(context.datasetIndex === datasetArray.length-1){
+                            return sum + ' ('+ Math.round((sum/totalClubs) * 100) + '%)'
+                        } else {
+                            return ''
+                        }
+
+                    }
+                }
+            }
+        },
+        plugins: [ChartDataLabels]
+    };
+
+    let myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+
+    function updateChart(division, datasets){
+        myChart.data.datasets = datasets;
+        myChart.update();
+    }
+
+    function updatePage() {
+        const division = document.getElementById('memberSelect').value;
+        var results = {}
+        $.ajax({
+            url: '/getdivision',
+            type: 'GET',
+            data: {
+                division: division,
+            },
+            success: function (response) {
+                response = response.data
+                if (division === "all") {
+                    $('#octotal').replaceWith('<span class="text-center fw-bold text-danger" id="octotal"></span>');
+                    $('#ocactive').replaceWith('<span class="text-center fw-bold text-danger" id="ocactive"></span>');
+                    $('#oclow').replaceWith('<span class="text-center fw-bold text-danger" id="oclow"></span>');
+                    $('#ocsuspended').replaceWith('<span class="text-center fw-bold text-danger" id="ocsuspended"></span>');
+                    $('#ocineligible').replaceWith('<span class="text-center fw-bold text-danger" id="ocineligible"></span>');
+                    $('#ocofficer').replaceWith('<span class="text-center fw-bold text-danger" id="ocofficer"></span>');
+                    $('#ocnewmembers').replaceWith('<span class="text-center fw-bold text-danger" id="ocnewmembers"></span>');
+                    $('#oczeroplusmembers').replaceWith('<span class="text-center fw-bold text-danger" id="oczeroplusmembers"></span>');
+                    $('#ocdues').replaceWith('<tr id="ocdues"></tr>');
+                    $('#octrain1').replaceWith('<span class="text-center fw-bold text-danger" id="octrain1"></span>');
+                    $('#octrain2').replaceWith('<span class="text-center fw-bold text-danger" id="octrain2"></span>');
+                    $('#ocnovvisits').replaceWith('<span class="text-center fw-bold text-danger" id="ocnovvisits"></span>');
+                    $('#ocmayvisits').replaceWith('<span class="text-center fw-bold text-danger" id="ocmayvisits"></span>');
+                    $('#ocpaidbase').replaceWith('<span class="text-center fw-bold text-danger" id="ocpaidbase"></span>');
+                    $('#ocpaiddate').replaceWith('<span class="text-center fw-bold text-danger" id="ocpaiddate"></span>');
+                    $('#ocpaidalmost').replaceWith('<span class="text-center fw-bold text-danger" id="ocpaidalmost"></span>');
+                    $('#ocpaidneeded').replaceWith('<span class="text-center fw-bold text-danger" id="ocpaidneeded"></span>');
+                    $('#ocdistinguishedbase').replaceWith('<span class="text-center fw-bold text-danger" id="ocdistinguishedbase"></span>');
+                    $('#ocdistinguisheddate').replaceWith('<span class="text-center fw-bold text-danger" id="ocdistinguisheddate"></span>');
+                    $('#ocdistinguishedalmost').replaceWith('<span class="text-center fw-bold text-danger" id="ocdistinguishedalmost"></span>');
+                    $('#ocdistinguishedneeded').replaceWith('<span class="text-center fw-bold text-danger" id="ocdistinguishedneeded"></span>');
+                    coaches = document.getElementById('coachbody').children
+                    for (let i = 0; i < coaches.length; i++) {
+                        coaches[i].setAttribute('style', 'display:table-row')
+                    }
+                } else {
+                    var total = (response['totalClubs'])
+                    $('#octotal').replaceWith('<span class="text-center fw-bold text-danger" id="octotal">' + response['Total Clubs'] + ' / </span>');
+                    $('#ocactive').replaceWith('<span class="text-center fw-bold text-danger" id="ocactive">' + response['Active'] + ' / </span>');
+                    $('#oclow').replaceWith('<span class="text-center fw-bold text-danger" id="oclow">' + response['Low'] + ' / </span>');
+                    $('#ocsuspended').replaceWith('<span class="text-center fw-bold text-danger" id="ocsuspended">' + response['Suspended'] + ' / </span>');
+                    $('#ocineligible').replaceWith('<span class="text-center fw-bold text-danger" id="ocineligible">' + response['Ineligible'] + ' / </span>');
+                    $('#ocofficer').replaceWith('<span class="text-center fw-bold text-danger" id="ocofficer">' + response['Officer Count'] + ' / </span>');
+                    $('#ocnewmembers').replaceWith('<span class="text-center fw-bold text-danger" id="ocnewmembers">' + response['New Members'] + ' / </span>');
+                    $('#oczeroplusmembers').replaceWith('<span class="text-center fw-bold text-danger" id="oczeroplusmembers">' + response['Zero Plus Members'] + ' / </span>');
+                    $('#ocdues').replaceWith('<tr id="ocdues"><td class="text-center fw-bold text-danger">' + response['Oct Dues'] + ' Clubs</td><td class="text-center fw-bold text-danger">' + response['Apr Dues'] + ' Clubs</td><tr>');
+                    $('#octrain1').replaceWith('<span class="text-center fw-bold text-danger" id="octrain1">' + response['Training 1'] + ' / </span>');
+                    $('#octrain2').replaceWith('<span class="text-center fw-bold text-danger" id="octrain2">' + response['Training 2'] + ' / </span>');
+                    $('#ocnovvisits').replaceWith('<span class="text-center fw-bold text-danger" id="ocnovvisits">' + response['Nov Visits'] + ' / </span>');
+                    $('#ocmayvisits').replaceWith('<span class="text-center fw-bold text-danger" id="ocmayvisits">' + response['May Visits'] + ' / </span>');
+                    $('#ocpaidbase').replaceWith('<span class="text-center fw-bold text-danger" id="ocpaidbase">' + response['Paid Base'] + ' / </span>');
+                    $('#ocpaiddate').replaceWith('<span class="text-center fw-bold text-danger" id="ocpaiddate">' + response['Paid To Date'] + ' / </span>');
+                    $('#ocpaidalmost').replaceWith('<span class="text-center fw-bold text-danger" id="ocpaidalmost">' + response['Paid Almost'] + ' / </span>');
+                    $('#ocpaidneeded').replaceWith('<span class="text-center fw-bold text-danger" id="ocpaidneeded">' + response['Paid Goals'] + ' / </span>');
+                    $('#ocdistinguishedbase').replaceWith('<span class="text-center fw-bold text-danger" id="ocdistinguishedbase">' + response['Paid Base'] + ' / </span>');
+                    $('#ocdistinguisheddate').replaceWith('<span class="text-center fw-bold text-danger" id="ocdistinguisheddate">' + response['Distinguished To Date'] + ' / </span>');
+                    $('#ocdistinguishedalmost').replaceWith('<span class="text-center fw-bold text-danger" id="ocdistinguishedalmost">' + response['Distinguished Almost'] + ' / </span>');
+                    $('#ocdistinguishedneeded').replaceWith('<span class="text-center fw-bold text-danger" id="ocdistinguishedneeded">' + response['Distinguished Goals'] + ' / </span>');
+
+
+                    let coaches = document.getElementById('coachbody').children
+                    for (let i = 0; i < coaches.length; i++) {
+                        if(coaches[i].classList.contains('coach' + division)){
+                            coaches[i].setAttribute('style', 'color:red')
+                        } else {
+                            coaches[i].setAttribute('style', 'display:none')
+
+                        }
+                    }
+                    /*
+                    coaches = document.getElementsByClassName('coach' + division)
+                    for (let i = 0; i < coaches.length; i++) {
+                        coaches[i].setAttribute('style', 'display: initial')
+                    }
+
+                     */
+
+                }
+            }
+        })
+    }
+
+</script>
+<%- include('footer') -%>

@@ -1,0 +1,604 @@
+<%- include('header') -%>
+<div class="row">
+    <div class="col-lg-3 mb-2">
+        <div class="card h-100 shadow">
+            <div class="card-body">
+                <h5 class="card-title text-center fw-bold">Total Clubs</h5>
+                <h5 id="totalclubs" class="text-center">
+                    <div class="spinner-border spinner-border-sm" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </h5>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 mb-2">
+        <div class="card h-100 shadow">
+            <div class="card-body">
+                <h5 class="card-title text-center fw-bold">Clubs Status</h5>
+                <div class="row mt-3">
+                    <div class="col-3 border-end">
+                        <p class="text-center text-muted">Active</p>
+                        <h6 id="activeclubs" class="text-center fw-bold">
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </h6>
+                    </div>
+                    <div class="col-3 border-end">
+                        <p class="text-center text-muted">Low</p>
+                        <h6 id="lowclubs" class="text-center fw-bold">
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </h6>
+
+                    </div>
+                    <div class="col-3 border-end">
+                        <p class="text-center text-muted">Suspended</p>
+                        <h6 id="suspendedclubs" class="text-center fw-bold">
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </h6>
+
+                    </div>
+                    <div class="col-3">
+                        <p class="text-center text-muted">Ineligible</p>
+                        <h6 id="ineligibleclubs" class="text-center fw-bold">
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </h6>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 mb-2">
+        <div class="card h-100 shadow">
+            <div class="card-body">
+                <h5 class="card-title text-center fw-bold">Officer List Submitted</h5>
+                <h5 id="officer" class="text-center">
+                    <div class="spinner-border spinner-border-sm" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </h5>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-lg-6">
+        <div class="card shadow mb-2">
+            <div class="card-body">
+                <h5 class="card-title text-center fw-bold">Paid Clubs</h5>
+                <div class="row mt-3">
+                    <div class="col-3 border-end">
+                        <p class="text-center text-muted">Base</p>
+                        <h6 id="paidbase" class="text-center fw-bold">
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </h6>
+                    </div>
+                    <div class="col-3 border-end">
+                        <p class="text-center text-muted">To Date</p>
+                        <h6 id="paiddate" class="text-center fw-bold">
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </h6>
+                    </div>
+                    <div class="col-3 border-end">
+                        <p class="text-center text-muted">Almost
+                            <i class="bi bi-info-circle-fill"
+                               data-bs-toggle="tooltip" data-bs-placement="top"
+                               data-bs-custom-class="custom-tooltip"
+                               data-bs-title="Contingent on April Renewals">
+                            </i>
+                        </p>
+                        <h6 id="paidalmost" class="text-center fw-bold">
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </h6>
+                    </div>
+                    <div class="col-3">
+                        <p class="text-center text-muted">Goals</p>
+                        <h6 id="paidgoals" class="text-center fw-bold">
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card shadow mb-2">
+            <div class="card-body">
+                <h5 class="card-title text-center fw-bold">Distinguished Clubs</h5>
+                <div class="row mt-3">
+                    <div class="col-3 border-end">
+                        <p class="text-center text-muted">Base</p>
+                        <h6 id="distinguishedbase" class="text-center fw-bold">
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </h6>
+                    </div>
+                    <div class="col-3 border-end">
+                        <p class="text-center text-muted">To Date</p>
+                        <h6 id="distinguisheddate" class="text-center fw-bold">
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </h6>
+                    </div>
+                    <div class="col-3 border-end">
+                        <p class="text-center text-muted">Almost
+                            <i class="bi bi-info-circle-fill"
+                               data-bs-toggle="tooltip" data-bs-placement="top"
+                               data-bs-custom-class="custom-tooltip"
+                               data-bs-title="Contingent on April Renewals">
+                            </i>
+                        </p>
+                        <h6 id="distinguishedalmost" class="text-center fw-bold">
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </h6>
+                    </div>
+                    <div class="col-3">
+                        <p class="text-center text-muted">Goals</p>
+                        <h6 id="distinguishedgoals" class="text-center fw-bold">
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-md-8 mb-3">
+        <div class="card h-100 shadow" style="width: 100%;">
+            <div class="card-body">
+                <div class="chart-container" style="width: 100%;height: 700px;">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="row mb-3">
+            <div class="col-md-6 mb-2">
+                <div class="card h-100 shadow mb-2">
+                    <div class="card-body">
+                        <h5 class="card-title text-center fw-bold">Training 1</h5>
+                        <h6 id="train1" class="text-center">
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-2">
+                <div class="card h-100 shadow mb-2">
+                    <div class="card-body">
+                        <h5 class="card-title text-center fw-bold">Training 2</h5>
+                        <h6 id="train2" class="text-center">
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6 mb-2">
+                <div class="card h-100 shadow mb-2">
+                    <div class="card-body">
+                        <h5 class="card-title text-center fw-bold">Nov. Visits</h5>
+                        <h6 id="novvisits" class="text-center">
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-2">
+                <div class="card h-100 shadow mb-2">
+                    <div class="card-body">
+                        <h5 class="card-title text-center fw-bold">May Visits</h5>
+                        <h6 id="mayvisits" class="text-center">
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card shadow" style="width: 100%;">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Performance</h5>
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="visit-tab" data-bs-toggle="tab" data-bs-target="#visit-tab-pane" type="button" role="tab" aria-controls="visit-tab-pane" aria-selected="true">Club Visits</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="renewal-tab" data-bs-toggle="tab" data-bs-target="#renewal-tab-pane" type="button" role="tab" aria-controls="renewal-tab-pane" aria-selected="false">Renewals</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="coach-tab" data-bs-toggle="tab" data-bs-target="#coach-tab-pane" type="button" role="tab" aria-controls="coach-tab-pane" aria-selected="false">Club Coaches</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent" style="overflow:scroll; max-height:366px;">
+                            <div class="tab-pane fade show active" id="visit-tab-pane" role="tabpanel" aria-labelledby="visit-tab" tabindex="0">
+                                <table class="table table-hover">
+                                    <thead class="table-dark">
+                                    <tr style="white-space: nowrap;position: sticky;top: 0;">
+                                        <th>#</th>
+                                        <th>Club Name</th>
+                                        <th>Nov.</th>
+                                        <th>May</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="visitsTable">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane fade" id="renewal-tab-pane" role="tabpanel" aria-labelledby="renewal-tab" tabindex="0">
+                                <table class="table table-hover">
+                                    <thead class="table-dark">
+                                    <tr style="white-space: nowrap;position: sticky;top: 0;">
+                                        <th>#</th>
+                                        <th>Club Name</th>
+                                        <th>Oct.</th>
+                                        <th>Apr.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="renewalsTable">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane fade" id="coach-tab-pane" role="tabpanel" aria-labelledby="coach-tab" tabindex="0">
+                                <table class="table table-hover">
+                                    <thead class="table-dark">
+                                    <tr style="white-space: nowrap;position: sticky;top: 0;">
+                                        <th>#</th>
+                                        <th>Club Name</th>
+                                        <th>Coach Name</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="coachesTable">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-2">
+    <div class="col-lg-12">
+        <div class="card m-1 shadow" style="width: 100%;">
+            <div id="goalsection" class="card-body">
+                <h5 class="card-title text-center">Goals</h5>
+                <div class="row">
+                    <div class="col-4">
+                        <p class="ms-2 text-center"><i class="bi bi-square-fill" style="color:darkseagreen;"></i> Goals Met</p>
+                    </div>
+                    <div class="col-4">
+                        <p class="ms-2 text-center"><i class="bi bi-square-fill" style="color:gold;"></i> On Track</p>
+                    </div>
+                    <div class="col-4">
+                        <p class="ms-2 text-center"><i class="bi bi-square-fill" style="color:tomato;"></i> No Goals Met</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    window.onload = (event) => {
+        generateData()
+    };
+    
+    function generateData(){
+        let data;
+        const area = '<%- area %>';
+        let divisionlist;
+        let arealist;
+        let clublist;
+        $.ajax({
+            url: '/getarea',
+            type: 'GET',
+            data: {
+                area: area,
+            },
+            success: function(response){
+                console.log(response)
+                data = response.data
+                df = response.list
+            },
+            error: function (request, status, error) {
+                alert(error);
+            }
+        }).then(function (){
+            let divisionlist = df['Division List']
+            let arealist = df['Area List']
+            let clublist = df['Club List']
+            let currdivision = df['Division']
+            let currarea = df['Area']
+            let currclub = df['Club']
+            $('#divisionSelect').append(`<option ${(function (){
+                if(currdivision === "all"){
+                    return "selected "
+                } else {
+                    return ""
+                }
+            })()} value="all">All</option>`)
+            for(let i = 0; i < divisionlist.length; i++){
+                $('#divisionSelect').append(`<option ${(function (){
+                    if(divisionlist[i] === currdivision){
+                        return "selected "
+                    } else {
+                        return ""
+                    }
+                })()}value="${divisionlist[i]}">${divisionlist[i]}</option>`)
+                $('#memberSelect').append(`<option value="${divisionlist[i]}">${divisionlist[i]}</option>`)
+            }
+            $('#areaSelect').append(`<option ${(function (){
+                if(currarea === "all"){
+                    return "selected "
+                } else {
+                    return ""
+                }
+            })()} value="all">All</option>`)
+            for(let i = 0; i < arealist.length; i++){
+                $('#areaSelect').append(`<option ${(function (){
+                    if(arealist[i] === currarea){
+                        return "selected "
+                    } else {
+                        return ""
+                    }
+                })()} value="${arealist[i]}">${arealist[i]}</option>`)
+            }
+            $('#clubSelect').append(`<option ${(function (){
+                if(currclub === "none"){
+                    return "selected "
+                } else {
+                    return ""
+                }
+            })()} value="none">No Club Selected</option>`)
+            for(let i = 0; i < clublist.length; i++){
+                $('#clubSelect').append(`<option ${(function (){
+                    if(clublist[i]['Club Name'] === currclub){
+                        return "selected "
+                    } else {
+                        return ""
+                    }
+                })()} value="${clublist[i]['Club Name']}">${clublist[i]['Club Name']}</option>`)
+            }
+        })
+            .then(function(){
+                $('#totalclubs').replaceWith(`<h5 id="totalclubs" class="text-center">${data['Total Clubs']}</h5>`);
+                $('#activeclubs').replaceWith(`<h6 id="activeclubs" class="text-center fw-bold">${data['Active']}</h6>`);
+                $('#lowclubs').replaceWith(`<h6 id="lowlubs" class="text-center fw-bold">${data['Low']}</h6>`);
+                $('#suspendedclubs').replaceWith(`<h6 id="suspendedclubs" class="text-center fw-bold">${data['Suspended']}</h6>`)
+                $('#ineligibleclubs').replaceWith(`<h6 id="ineligibleclubs" class="text-center fw-bold">${data['Ineligible']}</h6>`)
+                $('#officer').replaceWith(`<h5 id="officer" class="text-center">${data['Officer Count']} Clubs</h5>`)
+                $('#newmembers').replaceWith(`<h6 id="newmembers" class="text-center">${data['New Members']}</h6>`);
+                $('#zeroplusmembers').replaceWith(`<h6 class="text-center" id="zeroplusmembers">${data['Zero Plus Members']}</h6>`);
+                $('#dues').replaceWith(`<tr id="dues"> <td class="text-center">
+                                    ${data['Oct Dues']} Clubs
+                                </td>
+                                <td class="text-center">
+                                    ${data['Apr Dues']} Clubs
+                                </td> <tr>`);
+                $('#train1').replaceWith(`<h6 class="text-center" id="train1">${data['Training 1']} Clubs (${Math.round(100 * (data['Training 1']/(data['Active'] + data['Low'])))}%)</h6>`);
+                $('#train2').replaceWith(`<h6 class="text-center" id="train2">${data['Training 2']} Clubs (${Math.round(100 * (data['Training 2']/(data['Active'] + data['Low'])))}%)</h6>`);
+                $('#novvisits').replaceWith(`<h6 class="text-center" id="novvisits">${data['Nov Visits']} Clubs (${Math.round(100 * (data['Nov Visits']/(data['Active'] + data['Low'])))}%)</h6>`);
+                $('#mayvisits').replaceWith(`<h6 class="text-center" id="mayvisits">${data['May Visits']} Clubs (${Math.round(100 * (data['May Visits']/(data['Active'] + data['Low'])))}%)</h6>`);
+                $('#paidalmost').replaceWith(`<h6 id="paidalmost" class="text-center fw-bold">${data['Paid Almost']}</h6>`);
+                $('#distinguishedalmost').replaceWith(`<h6 id="distinguishedalmost" class="text-center fw-bold">${data['Distinguished Almost']}</h6>`);
+                $('#paidbase').replaceWith(`<h6 id="paidbase" class="text-center fw-bold">${data['Paid Base']}</h6>`)
+                $('#paiddate').replaceWith(`<h6 id="paiddate" class="text-center fw-bold">${data['Paid To Date']}</h6>`)
+                $('#paidgoals').replaceWith(`<h6 id="paidgoals" class="text-center fw-bold">${data['Paid Goals']}</h6>`)
+                $('#distinguishedbase').replaceWith(`<h6 id="distinguishedbase" class="text-center fw-bold">${data['Distinguished Base']}</h6>`)
+                $('#distinguisheddate').replaceWith(`<h6 id="distinguisheddate" class="text-center fw-bold">${data['Distinguished To Date']}</h6>`)
+                $('#distinguishedgoals').replaceWith(`<h6 id="distinguishedgoals" class="text-center fw-bold">${data['Distinguished Goals']}</h6>`)
+
+                for(const clubs in data['Clubs']){
+                    $('#visitsTable').append(`
+                        <tr>
+                        <td>${data['Clubs'][clubs]['Club']}</td>
+                        <td>${data['Clubs'][clubs]['Club Name']}</td>
+                        <td>${data['Clubs'][clubs]['Nov Visit award'] === "1" ? "Y" : "N"}</td>
+                        <td>${data['Clubs'][clubs]['May Visit award'] === "1" ? "Y" : "N"}</td>
+                        </tr>
+                    `)
+                    $('#renewalsTable').append(`
+                        <tr>
+                        <td>${data['Clubs'][clubs]['Club']}</td>
+                        <td>${data['Clubs'][clubs]['Club Name']}</td>
+                        <td>${data['Clubs'][clubs]['October Renewals'] === "1" ? "Y" : "N"}</td>
+                        <td>${data['Clubs'][clubs]['April Renewals'] === "1" ? "Y" : "N"}</td>
+                        </tr>
+                    `)
+                    for(const coach in data['Clubs'][clubs]['Club Coach']){
+                        $('#coachesTable').append(`
+                        <tr>
+                        <td>${data['Clubs'][clubs]['Club']}</td>
+                        <td>${data['Clubs'][clubs]['Club Name']}</td>
+                        <td>${data['Clubs'][clubs]['Club Coach'][coach]['Name']}</td>
+                        <td>${data['Clubs'][clubs]['Club Coach'][coach]['Status']}</td>
+                        </tr>
+                    `)
+                    }
+                }
+
+                for(let club in data['Clubs']){
+                    $('#goalsection').append(`
+                    <div class="card mb-2 bg-opacity-10
+                    ${(function(){
+                        if(data['Clubs'][club]['Goals Status'] === "Red") {
+                            return "bg-danger"
+                        } else if(data['Clubs'][club]['Goals Status'] === "Yellow"){
+                            return "bg-warning"
+                        } else if(data['Clubs'][club]['Goals Status'] === "Green") {
+                            return "bg-success"
+                        }
+
+                    })()}
+                    " style="width: 100%">
+                    <a class="btn" href="/club/${data['Clubs'][club]['Club Name']}">
+                                <div>
+                                    <div class="row m-2">
+                                        <h5 class="">${data['Clubs'][club]['Club Name']}</h5>
+                                        <div class="col-md-3">
+                                            <h6><i class="bi bi-check-square-fill"></i> DCP Goals</h6>
+                                            <h6 class="text-center">${data['Clubs'][club]['Goals Met']}</h6>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h6><i class="bi bi-people-fill"></i> Membership Growth</h6>
+                                            ${(function(){
+                        if(data['Clubs'][club]['Active Members']>=20){
+                            return "20"
+                        } else {
+                            let x = parseInt(data['Clubs'][club]['Active Members']) - parseInt(data['Clubs'][club]['Mem. Base'])
+                            if(x > 0){
+                                return "+" + x.toString()
+                            } else {
+                                return (parseInt(data['Clubs'][club]['Active Members']) - parseInt(data['Clubs'][club]['Mem. Base'])).toString()
+                            }
+                        }
+                    })()}
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h6><i class="bi bi-mortarboard-fill"></i> Education</h6>
+                                            <h6 class="text-center">${data['Clubs'][club]['Education Points']}</h6>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h6><i class="bi bi-easel-fill"></i> Training</h6>
+                                            <h6 class="text-center">${data['Clubs'][club]['Education Points']}</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    `)
+                }
+            })
+            .then(function (){
+                getMembershipChart(data['Clubs'])
+            })
+    }
+
+  function getMembershipChart(clubs){
+        const data = {
+            labels: [],
+            datasets: [{
+                label: "Active Membership",
+                backgroundColor: 'rgb(8,68,103)',
+                borderColor: 'rgb(680,68,103)',
+                data: [],
+            },{
+                label: "Base Membership",
+                backgroundColor: 'rgb(121,32,42)',
+                borderColor: 'rgb(121,32,42)',
+                data: [],
+            }
+            ],
+        };
+        for(const club in clubs){
+            data.labels.push(clubs[club]['Club Name'])
+            data.datasets[0].data.push(clubs[club]['Active Members'])
+            data.datasets[1].data.push(clubs[club]['Mem. Base'])
+        }
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                legend: {
+                    display: false,
+                },
+                tooltips: {
+                    callbacks: {
+                        label: tooltipItem => `${tooltipItem.yLabel}: ${tooltipItem.xLabel}`,
+                        title: () => null,
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Membership: Division',
+                        font: {
+                            size: 20
+                        },
+                    },
+                    datalabels:{
+                        anchor: 'end',
+                        align: 'end',
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            stepSize: 4,
+                        },
+                        title: {
+                            display: true,
+                            text: "# of Members",
+                            font: {
+                                size: 17,
+                                weight: 'bold'
+                            },
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: "Clubs",
+                            font: {
+                                size: 17,
+                                weight: 'bold'
+                            },
+                        }
+                    }
+                },
+                indexAxis: 'y',
+
+            },
+        };
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+    }
+</script>
+
+
+<%- include('footer') -%>

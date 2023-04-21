@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--<link rel="icon" type="image/x-icon" href="{% static 'images/icon.png' %}">-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2 "></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://jsuites.net/v4/jsuites.js"></script>
+    <script src='https://cdn.jsdelivr.net/lodash/4.17.2/lodash.min.js'></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+    <title id="title"></title>
+    <!--<link rel="stylesheet" href="{% static 'frontend/style.css' %}">-->
+</head>
+<body style="background-color: aliceblue">
+
+<div id="loading" class="bg-light position-absolute top-50 start-50 translate-middle" style="z-index: 4; opacity: 80%;display: none; width: 100%; height: 100%">
+    <div class="position-absolute top-50 start-50 translate-middle">
+    <div class="spinner-border m-5" style="width: 10rem; height: 10rem;" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    <h5 class="text-center"></h5>
+    </div>
+</div>
+
+
+    <div class="position-absolute top-50 start-50"></div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="position: sticky; top: 0;z-index: 2;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Toastmasters District 40</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <a class="nav-link <% if (page === "Dashboard") { %> active<%}%>" href="/">Dashboard</a>
+                    <a class="nav-link <% if (page === "Reports") { %> active<%}%>" href="/reports">Reports</a>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="m-3">
+    <h1 class="display-6" id="title"><%= title %></h1>
+    <hr>
+    <div class="alert alert-danger d-flex align-items-start" role="alert">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+          </svg>
+        <div class="ms-1">
+            This website is currently in beta testing. During this phase, we will be fine tuning the sites content, navigation, and layout based on feedback we receive from you. If you encounter any error messages or broken links, we would like to know, as this will allow us to greatly improve the site. When you're done exploring, please take a few minutes and fill out our survey to let us know your thoughts. The survey button is located in the bottom right corner of the page.
+        </div>
+      </div>
+        <div class="row">
+                <form id="filter" method="get" action="/update/year" onsubmit=validateForm()>
+                    <div class="row align-items-center">
+                <div class="col-lg-2 mb-3">
+                    <div class="input-group">
+                        <label class="input-group-text" for="divisionSelect">Division</label>
+                        <select class="form-select" id="divisionSelect" name="division">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-2 mb-3">
+                    <div class="input-group">
+                    <label class="input-group-text" for="areaSelect">Area</label>
+                    <select class="form-select" id="areaSelect" name="area">
+                    </select>
+                    </div>
+                </div>
+                <div class="col-lg-5 mb-3">
+                    <div class="input-group">
+                    <label class="input-group-text" for="clubSelect">Club</label>
+                    <select class="form-select" id="clubSelect" name="club">
+                    </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 mb-3">
+                    <div class="input-group">
+                    <label class="input-group-text" for="dateSelect">Date</label>
+                    <input id="dateSelect" class="form-control" value="<%=year%>-<%=month%>" name="date" type="month" min="2009-01" placeholder="YYYY-MM" pattern="[0-9]{4}-[0-9]{2}" onchange="clickSubmit()"/>
+                    </div>
+                </div>
+                <input id="sub" ref="submit" type="submit" style="display: none;"/>
+                    </div>
+                </form>
+            <script>
+                function clickSubmit(){
+                    document.getElementById('sub').click()
+                }
+                function validateForm(){
+                    let spinner = document.getElementById('loading')
+                    spinner.style.display = 'block'
+                    let currentYear = new Date().getFullYear()
+                    let date = document.getElementById('dateSelect').value
+                    let m = date.split('-')[1]
+                    let y = date.split('-')[0]
+                    if(parseInt(y) < 2009 || parseInt(y) > currentYear || parseInt(m) < 1 || parseInt(m) > 13){
+                        event.preventDefault()
+                        alert('Input must be a valid date between January 2009 and the current date')
+                    }
+                }
+                document.getElementById('divisionSelect').addEventListener('change', function() {
+                    let division = this.value;
+                    console.log(division);
+                    if(division !== 'all'){
+                        window.location.href = '/division/'+ division
+                    } else {
+                        window.location.href = '/'
+                    }
+                });
+                document.getElementById('areaSelect').addEventListener('change', function() {
+                    let area = this.value;
+                    let division = document.getElementById('divisionSelect').value
+                    if(area !== 'all'){
+                        window.location.href = '/area/'+area
+                    } else {
+                        window.location.href = '/division/'+division
+                    }
+                })
+                document.getElementById('clubSelect').addEventListener('change', function() {
+                    let club = this.value;
+                    let area = document.getElementById('areaSelect').value
+                    if(club !== 'none'){
+                        window.location.href = '/club/'+club
+                    } else {
+                        window.location.href = '/area/' + area
+                    }
+                });
+            </script>
+        </div>
+        

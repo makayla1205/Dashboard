@@ -1,0 +1,598 @@
+
+<%- include('header') -%>
+<div class="row">
+    <div class="col-lg-12 text-center mb-2">
+        <div id="clubstatus" class="card h-100 shadow">
+            <div class="card-body">
+                <h4 class="">
+                    <div class="spinner-border spinner-border-sm" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </h4>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-4 mb-2">
+        <div class="card h-100 shadow">
+            <div class="card-body">
+                <h5 class="card-title text-center fw-bold">Membership</h5>
+                <br>
+                <div class="row align-items-center">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-4 border-end">
+                                <p class="text-center text-muted">Base</p>
+                                <h6 id="membase" class="text-center">
+                                    <div class="spinner-border spinner-border-sm" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </h6>
+                            </div>
+                            <div class="col-4 border-end">
+                                <p class="text-center text-muted">Active</p>
+                                <h6 id="memactive" class="text-center">
+                                    <div class="spinner-border spinner-border-sm" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </h6>
+                            </div>
+                            <div class="col-4">
+                                <p class="text-center text-muted">Goal</p>
+                                <h6 id="memgoal" class="text-center">
+                                    <div class="spinner-border spinner-border-sm" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 mb-2">
+        <div class="card h-100 shadow">
+            <div class="card-body">
+                <h5 class="card-title text-center fw-bold"> DCP Goals</h5>
+                <br>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-4 border-end">
+                                <p class="text-center text-muted">Goals Met</p>
+                                <h6 id="goalsmet" class="text-center">
+                                    <div class="spinner-border spinner-border-sm" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </h6>
+                            </div>
+                            <div class="col-4 border-end">
+                                <p class="text-center text-muted">April Dues</p>
+                                <h6 id="aprdues" class="text-center">
+                                    <div class="spinner-border spinner-border-sm" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </h6>
+                            </div>
+                            <div class="col-4">
+                                <p class="text-center text-muted">+3 Members</p>
+                                <h6 id="membersthree" class="text-center">
+                                    <div class="spinner-border spinner-border-sm" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2 mb-2">
+        <div class="card h-100 shadow">
+            <div class="card-body">
+                <h5 class="card-title text-center fw-bold">New Members</h5>
+                <br>
+                <h5 id="newmembers" class="text-center">
+                    <div class="spinner-border spinner-border-sm" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </h5>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2 mb-2">
+        <div class="card h-100 shadow">
+            <div class="card-body">
+                <h5 class="card-title text-center fw-bold"># of Renewals</h5>
+                <table class="table text-center">
+                    <thead>
+                    <tr>
+                        <th>October</th>
+                        <th>April</th>
+                    </tr>
+                    </thead>
+                    <tbody id="renewals">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-8 mt-3">
+        <div class="card shadow">
+            <div class="card-body">
+                <h5 class="card-title text-center fw-bold">Goals to Achieve</h5>
+                <table class="table table-bordered">
+                    <thead class="table-dark">
+                    <tr>
+                        <th>
+                            Goals to Achieve
+                        </th>
+                        <th>
+                            Goal
+                        </th>
+                        <th>
+                            To Date
+                        </th>
+                        <th>
+                            Status
+                        </th>
+                    </tr>
+                    </thead>
+                    <thead class="table-light" id="education">
+                    <tr>
+                        <th colspan="1" class="text-center">
+                            Education
+                        </th>
+                        <th colspan="3" class="text-center">
+
+                        </th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td colspan="1">
+                            Level 1 Awards
+                        </td>
+                        <td class="text-center">4</td>
+                        <td class="text-center" id="l1"></td>
+                        <td class="text-center" id="l1status"></td>
+                    </tr>
+                    <tr>
+                        <td>Level 2 Awards</td>
+                        <td class="text-center">2</td>
+                        <td class="text-center" id="l2"></td>
+                        <td class="text-center" id="l2status"></td>
+                    </tr>
+                    <tr>
+                        <td>More Level 2 Awards</td>
+                        <td class="text-center">2</td>
+                        <td class="text-center" id="ml2"></td>
+                        <td class="text-center" id="ml2status"></td>
+                    </tr>
+                    <tr>
+                        <td>Level 3 Awards</td>
+                        <td class="text-center">2</td>
+                        <td class="text-center" id="l3"></td>
+                        <td class="text-center" id="l3status"></td>
+                    </tr>
+                    <tr>
+                        <td>Level 4, Level 5, or DTM Award</td>
+                        <td class="text-center">1</td>
+                        <td class="text-center" id="l4"></td>
+                        <td class="text-center" id="l4status"></td>
+                    </tr>
+                    <tr>
+                        <td>One More Level 4, Level 5, or DTM Award</td>
+                        <td class="text-center">1</td>
+                        <td class="text-center" id="ml4"></td>
+                        <td class="text-center" id="ml4status"></td>
+                    </tr>
+                    <thead class="table-light">
+                    <tr>
+                        <th colspan="1" class="text-center">
+                            Membership
+                        </th>
+                        <th colspan="3" class="text-center">
+
+                        </th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td colspan="1">
+                            New Members
+                        </td>
+                        <td class="text-center">4</td>
+                        <td class="text-center" id="nm"></td>
+                        <td class="text-center" id="nmstatus"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="1">
+                            More New Members
+                        </td>
+                        <td class="text-center">4</td>
+                        <td class="text-center" id="mnm"></td>
+                        <td class="text-center" id="mnmstatus"></td>
+                    </tr>
+                    <thead class="table-light">
+                    <tr>
+                        <th colspan="1" class="text-center">
+                            Training
+                        </th>
+                        <th colspan="3" class="text-center">
+
+                        </th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td colspan="1">
+                            Club Officers Trained June-August
+                        </td>
+                        <td class="text-center">4</td>
+                        <td class="text-center" id="augot"></td>
+                        <td class="text-center" id="augotstatus"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="1">
+                            Club Officers Trained November-February
+                        </td>
+                        <td class="text-center">4</td>
+                        <td class="text-center" id="febot"></td>
+                        <td class="text-center" id="febotstatus"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 mt-3 ps-4 pe-4">
+
+        <div class="row mb-2">
+            <div class="card h-100 shadow" style="height: 43%">
+                <div class="card-body">
+                    <h5 class="card-title text-center fw-bold">Club Coach</h5>
+                    <ul id="coach" class="list-group">
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="card shadow" style="overflow:scroll; max-height:690px;">
+                <div class="card-body">
+                    <h5 class="card-title text-center fw-bold">Peer Mentor</h5>
+                    <ul id="mentor" class="list-group">
+
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row mb-2">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title text-center fw-bold">Officer List</h5>
+                    <ul id="officer" class="list-group">
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title text-center fw-bold">Members Achievements</h5>
+                    <div class="accordion accordion-flush" id="accordionAchievements">
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    window.onload = (event) => {
+        generateData()
+    };
+    async function generateData(){
+        let data;
+
+        $.ajax({
+            url: '/getclub',
+            data: {
+                club: '<%- club %>',
+            },
+            type: 'GET',
+            success: function(response){
+                console.log(response)
+                data = response.data
+                df = response.list
+            },
+            error: function (request, status, error) {
+                alert(error);
+            }
+        }).then(function (){
+            let divisionlist = df['Division List']
+            let arealist = df['Area List']
+            let clublist = df['Club List']
+            let currdivision = df['Division']
+            let currarea = df['Area']
+            let currclub = df['Club']
+            $('#divisionSelect').append(`<option ${(function (){
+                if(currdivision === "all"){
+                    return "selected "
+                } else {
+                    return ""
+                }
+            })()} value="all">All</option>`)
+            for(let i = 0; i < divisionlist.length; i++){
+                $('#divisionSelect').append(`<option ${(function (){
+                    if(divisionlist[i] === currdivision){
+                        return "selected "
+                    } else {
+                        return ""
+                    }
+                })()}value="${divisionlist[i]}">${divisionlist[i]}</option>`)
+                $('#memberSelect').append(`<option value="${divisionlist[i]}">${divisionlist[i]}</option>`)
+            }
+            $('#areaSelect').append(`<option ${(function (){
+                if(currarea === "all"){
+                    return "selected "
+                } else {
+                    return ""
+                }
+            })()} value="all">All</option>`)
+            for(let i = 0; i < arealist.length; i++){
+                $('#areaSelect').append(`<option ${(function (){
+                    if(arealist[i] === currarea){
+                        return "selected "
+                    } else {
+                        return ""
+                    }
+                })()} value="${arealist[i]}">${arealist[i]}</option>`)
+            }
+            $('#clubSelect').append(`<option ${(function (){
+                if(currclub === "none"){
+                    return "selected "
+                } else {
+                    return ""
+                }
+            })()} value="none">No Club Selected</option>`)
+            for(let i = 0; i < clublist.length; i++){
+                $('#clubSelect').append(`<option ${(function (){
+                    if(clublist[i]['Club Name'] === currclub){
+                        return "selected "
+                    } else {
+                        return ""
+                    }
+                })()} value="${clublist[i]['Club Name']}">${clublist[i]['Club Name']}</option>`)
+            }
+        })
+            .then(function(){
+                $('#clubstatus').replaceWith(`<div id="clubstatus" class="card h-100 shadow bg-opacity-50 ${(function(){
+                    if(data['Club Status'] === "Active") {
+                        return "bg-success"
+                    } else if(data['Club Status'] === "Low"){
+                        return "bg-warning"
+                    } else {
+                        return "bg-danger"
+                    }
+
+                })()}">
+            <div class="card-body">
+                <h4 class="">${data['Club Status']}</h4>
+            </div>
+        </div>`)
+                $('#membase').replaceWith(`<h6 id="membase" class="text-center">${data['Mem. Base']}</h6>`);
+                $('#memactive').replaceWith(`<h6 id="memactive" class="text-center">${data['Active Members']}</h6>`);
+                $('#memgoal').replaceWith(`<h6 id="memgoal" class="text-center">${(function(){
+                    if(data['Active Members'] >= 20){
+                        return "20"
+                    } else {
+                        return (parseInt(data['Mem. Base']) + 3).toString()
+                    }
+                })()}</h6>`);
+                $('#goalsmet').replaceWith(`<h6 id="goalsmet" class="text-center">${data['Goals Met']}</h6>`);
+                //$('#aprdues').replaceWith(`<h6 id="aprdues" class="text-center"></h6>`)
+                $('#membersthree').replaceWith(`<h6 id="membersthree" class="text-center">${(function(){
+                    if(data['Active Members'] >= 20){
+                        return `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                        </svg>`
+                    } else if(data['Active Members'] >= (parseInt(data['Mem. Base']) + 3)) {
+                        return `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                        </svg>`
+                    } else {
+                        return `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                        </svg>`
+                    }
+                })()}</h6>`)
+                $('#newmembers').replaceWith(`<h5 id="newmembers" class="text-center">${data['New Members']}</h5>`)
+                $('#renewals').replaceWith(`<tr id="renewals"> <td class="text-center">
+                                ${data['Oct. Ren.']}
+                                </td>
+                                <td class="text-center">
+                                   ${data['Apr. Ren.']}
+                                </td> <tr>`);
+                $('#coach').append(`<ul class="text-center list-group" id="coach">${(function (){
+                    if(data['Club Coach'].length < 1){
+                        if(data['Active Members'] < 13 && data['Active Members'] > 8){
+                            return `<li class="list-group-item text-center">Elligible</li>`
+                        } else {
+                            return `<li class="list-group-item text-center">Not Elligible</li>`
+                        }
+                    } else {
+                        for(let i = 0; i < data['Club Coach'].length; i++){
+                            return `<li class="list-group-item text-center">${data['Club Coach'][i]['Name']}</li>`
+                        }
+                    }
+                })()}</ul>`);
+                $('#mentor').replaceWith(`<ul class="text-center list-group" id="mentor">${(function (){
+                    if(data['Peer Mentor'].length < 1){
+                        return `<li class="list-group-item text-center">None</li>`
+                    } else {
+                        for(let i = 0; i < data['Peer Mentor'].length; i++){
+                            return `<li class="list-group-item text-center">${data['Peer Mentor'][i]['Member']}</li>`
+                        }
+                    }
+                })()}</ul>`);
+                $('#officer').replaceWith(`<ul class="text-center list-group" id="officer">${(function (){
+                    if(data['Officer'].length < 1){
+                        return `<li class="list-group-item text-center">List Not Here</li>`
+                    } else {
+                        for(let i = 0; i < data['Officer'].length; i++){
+                            return `<li class="list-group-item text-center">${data['Officer'][i]['List Status']}</li>`
+                        }
+                    }
+                })()}</ul>`);
+                for(let member in data['Members Achievements']){
+                    $('#accordionAchievements').append(`<div class="accordion-item">
+                    <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#item${data['Members Achievements'][member][0]['Member'].split(' ')[0]}" aria-expanded="false" aria-controls="item${data['Members Achievements'][member][0]['Member'].split(' ')[0]}">
+                        ${data['Members Achievements'][member][0]['Member']}
+
+                        ${(function(){
+                            if(data['Members Achievements'][member].length >= 3){ 
+                                return '(Triple Crown)'
+                            } else {
+                                return ''
+                            }
+                        })()}
+                        ${(function (){
+                            for(let item in data['Members Achievements'][member]){
+                                if(data['Members Achievements'][member][item]['Award'] === 'DTM'){return '(DTM)'}
+                            }
+                            return ''           
+                        })()}
+                    </button>
+                    </h2>
+                    <div id="item${data['Members Achievements'][member][0]['Member'].split(' ')[0]}" class="accordion-collapse collapse" data-bs-parent="#accordionAchievements">
+                    <div class="accordion-body">
+                        <ul class="list-group">
+                        ${(function (){
+                            let s = ''
+                            for(let item in data['Members Achievements'][member]){
+                                s += `<li class="list-group-item">${data['Members Achievements'][member][item]['Award']}</li>`
+                            }           
+                            return s
+                        })()}
+                        </ul>
+                        </div>
+                    </div>
+                    </div>`)
+                }
+                $('#l1').replaceWith(`<td class="text-center" id="l1">${data['Level 1s']}</td>`)
+                $('#l1status').append(`${(function (){
+                    if (data['Level 1s'] >= 4){
+                        return `<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                            <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                        </svg> `
+                    }else {
+                        return `${(4 - parseInt(data['Level 1s'])).toString()} More Needed`
+                    }
+                })()}`)
+
+                $('#l2').replaceWith(`<td class="text-center" id="l2">${data['Level 2s']}</td>`)
+                $('#l2status').append(`${(function (){
+                    if (data['Level 2s'] >= 2){
+                        return `<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                            <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                        </svg> `
+                    }else {
+                        return `${(2 - parseInt(data['Level 2s'])).toString()} More Needed`
+                    }
+                })()}`)
+                $('#ml2').replaceWith(`<td class="text-center" id="ml2">${data['Add. Level 2s']}</td>`)
+                $('#ml2status').append(`${(function (){
+                    if (data['Add. Level 2s'] >= 2){
+                        return `<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                            <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                        </svg> `
+                    }else {
+                        return `${(2 - parseInt(data['Add. Level 2s'])).toString()} More Needed`
+                    }
+                })()}`)
+                $('#l3').replaceWith(`<td class="text-center" id="l3">${data['Level 3s']}</td>`)
+                $('#l3status').append(`${(function (){
+                    if (data['Level 3s'] >= 2){
+                        return `<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                            <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                        </svg> `
+                    }else {
+                        return `${(2 - parseInt(data['Level 3s'])).toString()} More Needed`
+                    }
+                })()}`)
+                $('#l4').replaceWith(`<td class="text-center" id="l4">${data['Level 4s, Level 5s, or DTM award']}</td>`)
+                $('#l4status').append(`${(function (){
+                    if (data['Level 4s, Level 5s, or DTM award'] >= 1){
+                        return `<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                            <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                        </svg> `
+                    }else {
+                        return `${(1 - parseInt(data['Level 4s, Level 5s, or DTM award'])).toString()} More Needed`
+                    }
+                })()}`)
+                $('#ml4').replaceWith(`<td class="text-center" id="ml4">${data['Add. Level 4s, Level 5s, or DTM award']}</td>`)
+                $('#ml4status').append(`${(function (){
+                    if (data['Add. Level 4s, Level 5s, or DTM award'] >= 1){
+                        return `<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                            <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                        </svg> `
+                    }else {
+                        return `${(1 - parseInt(data['Add. Level 4s, Level 5s, or DTM award'])).toString()} More Needed`
+                    }
+                })()}`)
+                $('#nm').replaceWith(`<td class="text-center" id="nm">${data['New Members']}</td>`)
+                $('#nmstatus').append(`${(function (){
+                    if (data['New Members'] >= 4){
+                        return `<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                            <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                        </svg> `
+                    }else {
+                        return `${(4 - parseInt(data['New Members'])).toString()} More Needed`
+                    }
+                })()}`)
+                $('#mnm').replaceWith(`<td class="text-center" id="mnm">${data['Add. New Members']}</td>`)
+                $('#mnmstatus').append(`${(function (){
+                    if (data['Add. New Members'] >= 4){
+                        return `<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                            <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                        </svg> `
+                    }else {
+                        return `${(4 - parseInt(data['Add. New Members'])).toString()} More Needed`
+                    }
+                })()}`)
+                $('#augot').replaceWith(`<td class="text-center" id="augot">${data['Off. Trained Round 1']}</td>`)
+                $('#augotstatus').append(`${(function (){
+                    if (data['Off. Trained Round 1'] >= 4){
+                        return `<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                            <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                        </svg> `
+                    }else {
+                        return `${(4 - parseInt(data['Off. Trained Round 1'])).toString()} More Needed`
+                    }
+                })()}`)
+                $('#febot').replaceWith(`<td class="text-center" id="febot">${data['Off. Trained Round 2']}</td>`)
+                $('#febotstatus').append(`${(function (){
+                    if (data['Off. Trained Round 2'] >= 4){
+                        return `<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                            <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                        </svg> `
+                    }else {
+                        return `${(4 - parseInt(data['Off. Trained Round 2'])).toString()} More Needed`
+                    }
+                })()}`)
+            })
+    }
+</script>
+
+<%- include('footer') -%>
