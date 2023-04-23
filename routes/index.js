@@ -10,11 +10,11 @@ const { getData } = require('../functions');
 /* GET home page. */
 /* District dashboard */
 router.get('/', function(req, res, next) {
-  let year = req.app.locals.year
+  let year = req.session.year
   if (year === undefined) {
     year = new Date().getFullYear().toString()
   }
-  let month = req.app.locals.month
+  let month = req.session.month
   if (month === undefined) {
     month = (new Date().getMonth() + 1).toString()
     if (month.length < 2) {
@@ -30,11 +30,11 @@ router.get('/', function(req, res, next) {
 
 /* Division dashboard */
 router.get('/division/:divisionId', function(req, res, next) {
-  let year = req.app.locals.year
+  let year = req.session.year
   if(year === undefined){
     year = new Date().getFullYear()
   }
-  let month = req.app.locals.month
+  let month = req.session.month
   if(month === undefined){
     month = (new Date().getMonth() + 1).toString()
     if (month.length<2){
@@ -50,11 +50,11 @@ router.get('/division/:divisionId', function(req, res, next) {
 
 /* Area dashboard */
 router.get('/area/:areaId', function(req, res, next) {
-  let year = req.app.locals.year
+  let year = req.session.year
   if(year === undefined){
     year = new Date().getFullYear()
   }
-  let month = req.app.locals.month
+  let month = req.session.month
   if(month === undefined){
     month = (new Date().getMonth() + 1).toString()
     if (month.length<2){
@@ -69,11 +69,11 @@ router.get('/area/:areaId', function(req, res, next) {
 
 /* Club dashboard */
 router.get('/club/:clubId', function(req, res, next) {
-  let year = req.app.locals.year
+  let year = req.session.year
   if(year === undefined){
     year = new Date().getFullYear()
   }
-  let month = req.app.locals.month
+  let month = req.session.month
   if(month === undefined){
     month = (new Date().getMonth() + 1).toString()
     if (month.length<2){
@@ -85,11 +85,11 @@ router.get('/club/:clubId', function(req, res, next) {
 });
 
 router.get('/reports', function(req, res){
-  let year = req.app.locals.year
+  let year = req.session.year
   if(year === undefined){
     year = new Date().getFullYear()
   }
-  let month = req.app.locals.month
+  let month = req.session.month
   if(month === undefined){
     month = (new Date().getMonth() + 1).toString()
     if (month.length<2){
@@ -122,15 +122,22 @@ router.get('/update/year', async function(req, res, next) {
   }
   let area = req.query.area
   let division = req.query.division
-  req.app.locals.year = year
-  req.app.locals.month = month
-  //console.log(req.query)
   
+  //console.log(req.query)
   try {
-    req.app.locals.data = await getData(month, year)
+    req.session.year = year
+    console.log(req.session.year)
+    console.log(year)
+    req.session.month = month
+    req.session.data = await getData(month, year)
+    req.session.save( function(err) {
+      req.session.reload( function (err) {
+        console.log('Session Updated');
+      });
+    });
     res.redirect(req.get('referer'))
   } catch (error) {
-    console.log(error);
+    console.log('Year Not Updated: ' + error);
   }
 });
 
@@ -143,11 +150,11 @@ router.get('/update/report', function (req, res){
 
 //Returns District Data
 router.get('/getdistrict', async (req, res) => {
-  let year = req.app.locals.year
+  let year = req.session.year
   if(year === undefined){
     year = new Date().getFullYear()
   }
-  let month = req.app.locals.month
+  let month = req.session.month
   if(month === undefined){
     month = (new Date().getMonth() + 1).toString()
     if (month.length<2){
@@ -155,18 +162,24 @@ router.get('/getdistrict', async (req, res) => {
     }
   }
   let data = []
-  if(req.app.locals.data == undefined){
+  if(req.session.data == undefined){
     try {
-      req.app.locals.data = await getData(month, year)
+      req.session.data = await getData(month, year)
+      req.session.save( function(err) {
+        req.session.reload( function (err) {
+          //console.log('Session Updated');
+        });
+      });
+      //console.log(req.session.data)
     } catch (error) {
       console.log(error);
-      req.app.locals.data = []
+      req.session.data = []
     }
   }
-  let clublist = helper.getAllClubs(req.app.locals.data)
+  let clublist = helper.getAllClubs(req.session.data)
   clublist = clublist.sort()
-  let arealist = helper.getAllAreas(req.app.locals.data)
-  let divisionlist = helper.getAllDivisions(req.app.locals.data)
+  let arealist = helper.getAllAreas(req.session.data)
+  let divisionlist = helper.getAllDivisions(req.session.data)
   let obj = {}
   Object.assign(obj, {'Area List': arealist})
   Object.assign(obj, {'Club List': clublist})
@@ -174,17 +187,17 @@ router.get('/getdistrict', async (req, res) => {
   Object.assign(obj, {'Area': "all"})
   Object.assign(obj, {'Division': "all"})
   Object.assign(obj, {'Club': "none"})
-  res.json({data:req.app.locals.data, list: obj})
+  res.json({data:req.session.data, list: obj})
 })
 
 //Returns Division Data
 router.get('/getdivision', async (req, res) => {
   let division = req.query.division
-  let year = req.app.locals.year
+  let year = req.session.year
   if(year === undefined){
     year = new Date().getFullYear()
   }
-  let month = req.app.locals.month
+  let month = req.session.month
   if(month === undefined){
     month = (new Date().getMonth() + 1).toString()
     if (month.length<2){
@@ -192,12 +205,17 @@ router.get('/getdivision', async (req, res) => {
     }
   }
   let data = []
-  if(req.app.locals.data == undefined){
+  if(req.session.data === undefined){
     try {
-      req.app.locals.data = await getData(month, year)
+      req.session.data = await getData(month, year)
+      req.session.save( function(err) {
+        req.session.reload( function (err) {
+          //console.log('Session Updated');
+        });
+      });
     } catch (error) {
       console.log(error);
-      req.app.locals.data = []
+      req.session.data = []
     }
   }
   let area = req.query.area
@@ -205,16 +223,16 @@ router.get('/getdivision', async (req, res) => {
   let currclub = ""
   let currarea = ""
   let currdiv = ""
-  for(let i = 0; i < req.app.locals.data.length; i++){
-    if(req.app.locals.data[i]['Division'] === division){
-        currdiv = req.app.locals.data[i]['Division']
+  for(let i = 0; i < req.session.data.length; i++){
+    if(req.session.data[i]['Division'] === division){
+        currdiv = req.session.data[i]['Division']
         break;
     }
   }
-  let clublist = helper.getClubsByDivision(currdiv, req.app.locals.data)
+  let clublist = helper.getClubsByDivision(currdiv, req.session.data)
   clublist = clublist.sort()
-  let arealist = helper.getAreasByDivision(currdiv, req.app.locals.data)
-  let divisionlist = helper.getAllDivisions(req.app.locals.data)
+  let arealist = helper.getAreasByDivision(currdiv, req.session.data)
+  let divisionlist = helper.getAllDivisions(req.session.data)
   currclub = 'none'
   currarea = "all"
   let obj = {}
@@ -224,18 +242,18 @@ router.get('/getdivision', async (req, res) => {
   Object.assign(obj, {'Area': currarea})
   Object.assign(obj, {'Division': currdiv})
   Object.assign(obj, {'Club': currclub})
-  dataset = helper.getDivision(division,req.app.locals.data)
+  dataset = helper.getDivision(division,req.session.data)
   res.json({data: dataset, list: obj})
 })
 
 //Returns Area Data
 router.get('/getarea', async (req, res) => {
   let area = req.query.area
-  let year = req.app.locals.year
+  let year = req.session.year
   if(year === undefined){
     year = new Date().getFullYear()
   }
-  let month = req.app.locals.month
+  let month = req.session.month
   if(month === undefined){
     month = (new Date().getMonth() + 1).toString()
     if (month.length<2){
@@ -243,29 +261,34 @@ router.get('/getarea', async (req, res) => {
     }
   }
   let data = []
-  if(req.app.locals.data == undefined){
+  if(req.session.data === undefined){
     try {
-      req.app.locals.data = await getData(month, year)
+      req.session.data = await getData(month, year)
+      req.session.save( function(err) {
+        req.session.reload( function (err) {
+          //console.log('Session Updated');
+        });
+      });
     } catch (error) {
       console.log(error);
-      req.app.locals.data = []
+      req.session.data = []
     }
   }
   let currclub = ""
   let currarea = ""
   let currdiv = ""
-  let divisionlist = helper.getAllDivisions(req.app.locals.data)
-  for(let i = 0; i < req.app.locals.data.length; i++){
-    if(req.app.locals.data[i]['Area'] === area){
+  let divisionlist = helper.getAllDivisions(req.session.data)
+  for(let i = 0; i < req.session.data.length; i++){
+    if(req.session.data[i]['Area'] === area){
         currclub = 'none'
-        currarea = req.app.locals.data[i]['Area']
-        currdiv = req.app.locals.data[i]['Division']
+        currarea = req.session.data[i]['Area']
+        currdiv = req.session.data[i]['Division']
         break;
     }
 }
-let clublist = helper.getClubsByArea(currarea, req.app.locals.data)
+let clublist = helper.getClubsByArea(currarea, req.session.data)
 clublist = clublist.sort()
-let arealist = helper.getAreasByDivision(currdiv, req.app.locals.data)
+let arealist = helper.getAreasByDivision(currdiv, req.session.data)
 let obj = {}
 Object.assign(obj, {'Area List': arealist})
 Object.assign(obj, {'Club List': clublist})
@@ -273,18 +296,18 @@ Object.assign(obj, {'Division List': divisionlist})
 Object.assign(obj, {'Area': currarea})
 Object.assign(obj, {'Division': currdiv})
 Object.assign(obj, {'Club': currclub})
-  dataset = helper.getArea(area, req.app.locals.data)
+  dataset = helper.getArea(area, req.session.data)
   res.json({data: dataset, list: obj})
 })
 
 //Returns Club Data
 router.get('/getclub', async (req, res) => {
   let club = req.query.club
-  let year = req.app.locals.year
+  let year = req.session.year
   if(year === undefined){
     year = new Date().getFullYear()
   }
-  let month = req.app.locals.month
+  let month = req.session.month
   if(month === undefined){
     month = (new Date().getMonth() + 1).toString()
     if (month.length<2){
@@ -292,29 +315,34 @@ router.get('/getclub', async (req, res) => {
     }
   }
   let data = []
-  if(req.app.locals.data == undefined){
+  if(req.session.data === undefined){
     try {
-      req.app.locals.data = await getData(month, year)
+      req.session.data = await getData(month, year)
+      req.session.save( function(err) {
+        req.session.reload( function (err) {
+          //console.log('Session Updated');
+        });
+      });
     } catch (error) {
       console.log(error);
-      req.app.locals.data = []
+      req.session.data = []
     }
   }
   let currclub = ""
   let currarea = ""
   let currdiv = ""
-  let divisionlist = helper.getAllDivisions(req.app.locals.data)
-  for(let i = 0; i < req.app.locals.data.length; i++){
-    if(req.app.locals.data[i]['Club Name'].trim() === club){
-        currclub = req.app.locals.data[i]['Club Name']
-        currarea = req.app.locals.data[i]['Area']
-        currdiv = req.app.locals.data[i]['Division']
+  let divisionlist = helper.getAllDivisions(req.session.data)
+  for(let i = 0; i < req.session.data.length; i++){
+    if(req.session.data[i]['Club Name'].trim() === club){
+        currclub = req.session.data[i]['Club Name']
+        currarea = req.session.data[i]['Area']
+        currdiv = req.session.data[i]['Division']
         break;
     }
   }
-  let clublist = helper.getClubsByArea(currarea, req.app.locals.data)
+  let clublist = helper.getClubsByArea(currarea, req.session.data)
   clublist = clublist.sort()
-  let arealist = helper.getAreasByDivision(currdiv, req.app.locals.data)
+  let arealist = helper.getAreasByDivision(currdiv, req.session.data)
   let obj = {}
   Object.assign(obj, {'Area List': arealist})
   Object.assign(obj, {'Club List': clublist})
@@ -322,7 +350,7 @@ router.get('/getclub', async (req, res) => {
   Object.assign(obj, {'Area': currarea})
   Object.assign(obj, {'Division': currdiv})
   Object.assign(obj, {'Club': currclub})
-  dataset = helper.getClub(club, req.app.locals.data)
+  dataset = helper.getClub(club, req.session.data)
   res.json({data: dataset, list: obj})
 })
 
@@ -330,11 +358,11 @@ router.get('/getclub', async (req, res) => {
 router.get('/fetch/membershipchart', async (req, res) => {
   let division = req.query.division
   let dataset = []
-  let year = req.app.locals.year
+  let year = req.session.year
   if(year === undefined){
     year = new Date().getFullYear()
   }
-  let month = req.app.locals.month
+  let month = req.session.month
   if(month === undefined){
     month = (new Date().getMonth() + 1).toString()
     if (month.length<2){
@@ -342,15 +370,20 @@ router.get('/fetch/membershipchart', async (req, res) => {
     }
   }
   let data = []
-  if(req.app.locals.data == undefined){
+  if(req.session.data === undefined){
     try {
-      req.app.locals.data = await getData(month, year)
+      req.session.data = await getData(month, year)
+      req.session.save( function(err) {
+        req.session.reload( function (err) {
+          //console.log('Session Updated');
+        });
+      });
     } catch (error) {
       console.log(error);
-      req.app.locals.data = []
+      req.session.data = []
     }
   }
-  dataset = helper.getMembershipData(division, req.app.locals.data)
+  dataset = helper.getMembershipData(division, req.session.data)
   res.json(dataset)
 })
 

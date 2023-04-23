@@ -337,12 +337,12 @@
                 area: area,
             },
             success: function(response){
-                console.log(response)
+                //console.log(response)
                 data = response.data
                 df = response.list
             },
             error: function (request, status, error) {
-                alert(error);
+                alert("Error on area");
             }
         }).then(function (){
             let divisionlist = df['Division List']

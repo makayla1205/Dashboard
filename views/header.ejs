@@ -100,6 +100,9 @@
                     let date = document.getElementById('dateSelect').value
                     let m = date.split('-')[1]
                     let y = date.split('-')[0]
+                    if(date === '' || m === '' || y === ''){
+                        event.preventDefault()
+                    }
                     if(parseInt(y) < 2009 || parseInt(y) > currentYear || parseInt(m) < 1 || parseInt(m) > 13){
                         event.preventDefault()
                         alert('Input must be a valid date between January 2009 and the current date')
@@ -107,7 +110,7 @@
                 }
                 document.getElementById('divisionSelect').addEventListener('change', function() {
                     let division = this.value;
-                    console.log(division);
+                    //console.log(division);
                     if(division !== 'all'){
                         window.location.href = '/division/'+ division
                     } else {

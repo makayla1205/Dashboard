@@ -397,12 +397,12 @@
             url: '/getdistrict',
             type: 'GET',
             success: function(response){
-                console.log(response)
+                //console.log(response)
                 data = response.data
                 df = response.list
             },
             error: function (request, status, error) {
-                alert(error);
+                alert('Error getting district' + error);
             }
         }).then(function (){
             let divisionlist = df['Division List']
@@ -633,7 +633,7 @@
                 data = response
             },
             error: function (request, status, error) {
-                alert(error);
+                alert('Error on stats');
             }
         })
             .then(function (){
@@ -661,7 +661,7 @@
                 updateChart(division, response)
             },
             error: function (request, status, error) {
-                alert(error);
+                alert("Error on chart");
             }
         })
         updatePage()

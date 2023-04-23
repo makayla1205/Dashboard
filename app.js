@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+const sessions = require('express-session');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -10,6 +11,20 @@ var apiRouter = require('./routes/api');
 var app = express();
 const cors = require('cors');
 app.use(cors());
+
+// creating 24 hours from milliseconds
+const oneDay = 1000 * 60 * 60 * 24;
+
+//session middleware
+app.use(sessions({
+    year: (new Date().getFullYear).toString(),
+    month: '0' + (new Date().getMonth() + 1).toString(),
+    data: undefined,
+    secret: (process.env.SECRET || "thisismysecrctekeyfhrgfgrfrty84fwir767"),
+    saveUninitialized:true,
+    cookie: { maxAge: oneDay },
+    resave: false
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
