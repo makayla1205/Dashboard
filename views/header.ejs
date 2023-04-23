@@ -103,7 +103,7 @@
                     if(date === '' || m === '' || y === ''){
                         event.preventDefault()
                     }
-                    if(parseInt(y) < 2009 || parseInt(y) > currentYear || parseInt(m) < 1 || parseInt(m) > 13){
+                    if(parseInt(y) < 2009 || parseInt(y) > currentYear || parseInt(m) < 1 || parseInt(m) >= 13){
                         event.preventDefault()
                         alert('Input must be a valid date between January 2009 and the current date')
                     }
